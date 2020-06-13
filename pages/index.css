@@ -19,12 +19,12 @@
   flex-direction: column;
   justify-content: space-between;
   box-sizing: border-box;
-  align-items: left;
 }
 
 .header__logo-image {
   padding-top: 45px;
   padding-bottom: 40.6px;
+  margin-right: auto;
 }
 
 @media screen and (max-width: 950px) {
@@ -91,7 +91,7 @@
   text-overflow: ellipsis;
   white-space: nowrap;
   overflow: hidden;
-  /* margin: 0 auto; */
+  margin: 0 auto;
 }
 
 @media screen and (max-width: 950px) {
@@ -123,6 +123,19 @@
   box-sizing: border-box;
   background-color: rgba(0, 50, 50, 0);
   margin: 35px auto auto 17px;
+  cursor: pointer;
+}
+
+.edit-button:active {
+  outline: none;
+}
+
+.edit-button:focus {
+  outline: none;
+}
+
+.edit-button:hover {
+  opacity: .6;
 }
 
 @media screen and (max-width: 400px) {
@@ -145,6 +158,19 @@
   padding: 14px 64px 14px 64px;
   margin-left: auto;
   align-self: center;
+  cursor: pointer;
+}
+
+.add-button:active {
+  outline: none;
+}
+
+.add-button:focus {
+  outline: none;
+}
+
+.add-button:hover {
+  opacity: .6;
 }
 
 @media screen and (max-width: 950px) {
@@ -189,6 +215,68 @@
   }
 }
 
-.profile__profession {
-  margin: 0 auto;
+.elements {
+  max-width: 882px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 66px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 282px);
+  grid-column-gap: 18px;
+  grid-row-gap: 21px;
+  padding: 0 19px;
+}
+
+@media screen and (max-width: 530px) {
+  .elements {
+    margin: 36px auto 48px auto;
+    grid-row-gap: 20px;
+  }
+}
+
+.elements__item {
+  background-color: white;
+  border-radius: 10px 10px;
+}
+
+.elements__image {
+  border-radius: 10px 10px 0px 0px;
+  max-width: 100%;
+  overflow: hidden;
+  background-size: cover;
+}
+
+.elements__title-container {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.like-button {
+  background-image: url('../images/heart.svg');
+  height: 20.76px;
+  width: 18.13px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 50, 50, 0);
+  border: none;
+  box-sizing: border-box;
+  padding: 22.24px;
+  cursor: pointer;
+}
+
+.like-button:active {
+  outline: none;
+  background-image: url('../images/heart-red.svg');
+}
+
+.like-button:focus {
+  outline: none;
+}
+
+.elements__title {
+  margin: 25px auto 31px 21px;
+  text-overflow: ellipsis;
+  white-space: nowrap;
+  overflow: hidden;
 }
