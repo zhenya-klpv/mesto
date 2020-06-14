@@ -317,3 +317,144 @@
     padding-left: 19px;
   }
 }
+
+.popup {
+  position: fixed;
+  left: 0;
+  top: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  display: block;
+  display: none;
+}
+
+.popup:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #2A2C2F;
+  opacity: .5;
+  z-index: -1;
+}
+
+.popup__close-button {
+  position: absolute;
+  top: -41px;
+  left: 441px;
+  background-image: url('../images/plus-deg.svg');
+  width: 41px;
+  height: 41px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 50, 50, 0);
+  cursor: pointer;
+  transition: .3s;
+  border: none;
+  z-index: 2;
+}
+
+.popup__close-button:active {
+  outline: none;
+}
+
+.popup__close-button:focus {
+  outline: none;
+}
+
+.popup__close-button:hover {
+  opacity: .6;
+}
+
+@media screen and (max-width: 550px) {
+  .popup__close-button {
+    left: 90%;
+  }
+}
+
+@media screen and (max-width: 375px) {
+  .popup__close-button {
+    left: 85%;
+  }
+}
+
+.popup__container {
+  max-width: 430px;
+  background: #FFFFFF;
+  border-radius: 10px;
+  margin: 15% auto;
+  z-index: 2;
+  display: flex;
+  flex-direction: column;
+  position: relative;
+}
+
+@media screen and (max-width: 450px) {
+  .popup__container {
+    margin: 15% 10px;
+  }
+}
+
+.popup__title {
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: 900;
+  font-size: 24px;
+  line-height: 29px;
+  color: #000000;
+  margin: 34px 64px 54px 36px;
+}
+
+.popup__text {
+  width: 87%;
+  border: none;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 14px;
+  line-height: 17px;
+  color: #000000;
+  margin: 0 auto;
+  outline: none
+}
+
+.popup__line {
+  width: 87%;
+  opacity: 0.2;
+  border: 1px solid #000000;
+  margin: 13px auto 30px auto;
+}
+
+.popup__save-button {
+  width: 87%;
+  height: 50px;
+  margin: 18px auto 36px auto;
+  background: #000000;
+  border-radius: 2px;
+  font-family: 'Inter', 'Arial', sans-serif;
+  font-style: normal;
+  font-weight: normal;
+  font-size: 18px;
+  line-height: 22px;
+  text-align: center;
+  color: #FFFFFF;
+  cursor: pointer;
+  transition: .3s;
+  border: none;
+}
+
+.popup__save-button:active {
+  outline: none;
+}
+
+.popup__save-button:focus {
+  outline: none;
+}
+
+.popup__save-button:hover {
+  opacity: .6;
+}

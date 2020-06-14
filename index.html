@@ -16,11 +16,8 @@
 <body>
   <div class="root">
     <header class="header">
-      <!-- <a class="header__logo" href="#"> -->
       <img class="header__logo-image" src="images/logo.svg" alt="Логотип Mesto.">
-
-      <div class="header__line">
-      </div>
+      <div class="header__line"></div>
     </header>
 
     <main class="content">
@@ -89,5 +86,21 @@
     <footer class="footer">
       <div class="footer__text">© 2020 Mesto Russia</div>
     </footer>
+
+    <div class="popup popup_opened">
+      <div class="popup__container">
+        <button type="button" name="close-button" class="popup__close-button"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input type="text" placeholder="Имя" class="popup__text popup__text_type_name">
+        <div class="popup__line"></div>
+        <input type="text" placeholder="Профессия" class="popup__text popup__text_type_profession">
+        <div class="popup__line"></div>
+        <button type="button" name="save-button" class="popup__save-button">Сохранить</button>
+      </div>
+    </div>
+
+
+  </div>
+  </div>
   </div>
 </body>
