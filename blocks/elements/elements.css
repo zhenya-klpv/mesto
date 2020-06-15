@@ -1,0 +1,24 @@
+@import url(./__image/elements__image.css);
+@import url(./__item/elements__item.css);
+@import url(./__like-button/elements__like-button.css);
+@import url(./__title/elements__title.css);
+@import url(./__title-container/elements__title-container.css);
+
+.elements {
+  max-width: 882px;
+  justify-content: center;
+  align-items: center;
+  margin: 0 auto 66px auto;
+  display: grid;
+  grid-template-columns: repeat(auto-fill, 282px);
+  grid-column-gap: 18px;
+  grid-row-gap: 21px;
+  padding: 0 19px;
+}
+
+@media screen and (max-width: 530px) {
+  .elements {
+    margin: 36px auto 48px auto;
+    grid-row-gap: 20px;
+  }
+}

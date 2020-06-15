@@ -1,0 +1,27 @@
+.elements__like-button {
+  background-image: url('../../../images/heart.svg');
+  background-size: 100%;
+  height: 20.76px;
+  width: 18.13px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-color: rgba(0, 50, 50, 0);
+  border: none;
+  transition: .3s;
+  cursor: pointer;
+  margin-right: 17.24px;
+}
+
+.elements__like-button:hover {
+  4 opacity: .6;
+  outline: none;
+}
+
+.elements__like-button:active {
+  outline: none;
+  background-image: url('../../../images/heart-red.svg');
+}
+
+.elements__like-button:focus {
+  outline: none;
+}
