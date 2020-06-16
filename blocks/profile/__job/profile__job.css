@@ -1,4 +1,4 @@
-.profile__profession {
+.profile__job {
   font-family: 'Inter', 'Arial', sans-serif;
   font-style: normal;
   font-weight: normal;
@@ -12,19 +12,19 @@
 }
 
 @media screen and (max-width: 950px) {
-  .profile__profession {
+  .profile__job {
     width: 100%;
   }
 }
 
 @media screen and (max-width: 530px) {
-  .profile__profession {
+  .profile__job {
     text-align: right;
   }
 }
 
 @media screen and (max-width: 400px) {
-  .profile__profession {
+  .profile__job {
     font-size: 14px;
     line-height: 17px;
   }
