@@ -12,3 +12,11 @@
     box-sizing: border-box;
   }
 }
+
+
+@media screen and (max-width: 425px) {
+  .header__logo-image {
+width: 104px;
+box-sizing: content-box;
+  }
+}

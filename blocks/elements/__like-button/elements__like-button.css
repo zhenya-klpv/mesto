@@ -13,7 +13,7 @@
 }
 
 .elements__like-button:hover {
-  4 opacity: .6;
+  opacity: .6;
   outline: none;
 }
 
