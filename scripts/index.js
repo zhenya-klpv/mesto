@@ -8,20 +8,23 @@ const nameInput = document.querySelector('.popup__text_type_name');
 const jobInput = document.querySelector('.popup__text_type_job');
 const formElement = popup.querySelector('.popup__container');
 
-let popupToggle = function(event) {
-  popup.classList.toggle('popup_opened')
-  nameInput.value = name.textContent
-  jobInput.value = job.textContent
+
+function popupToggle () {
+if (popup.classList.contains('popup')) {
+nameInput.value = name.textContent;
+jobInput.value = job.textContent;
+}
+popup.classList.toggle('popup_opened');
 }
 
 nameInput.value = 'Жак-Ив Кусто';
 jobInput.value = 'Исследователь океана';
 
 function formSubmitHandler(evt) {
-  evt.preventDefault()
-  popup.classList.toggle('popup_opened')
-  name.textContent = nameInput.value
-  job.textContent = jobInput.value
+  evt.preventDefault();
+  popup.classList.toggle('popup_opened');
+  name.textContent = nameInput.value;
+  job.textContent = jobInput.value;
 }
 
 openPopup.addEventListener('click', popupToggle);
