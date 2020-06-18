@@ -2,6 +2,7 @@
   display: flex;
   justify-content: flex-start;
   flex-direction: row;
+  width: 336px;
 }
 
 @media screen and (max-width: 708px) {
@@ -11,6 +12,12 @@
 }
 
 @media screen and (max-width: 530px) {
+  .profile__info {
+      width: 260px;
+  }
+}
+
+@media screen and (max-width: 437px) {
   .profile__info {
     margin: 0 auto;
     padding: 0 20px;
