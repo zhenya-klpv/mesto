@@ -19,13 +19,13 @@
 
 @media screen and (max-width: 530px) {
   .profile__job {
-    text-align: right;
+    font-size: 14px;
+    line-height: 17px;
   }
 }
 
 @media screen and (max-width: 400px) {
   .profile__job {
-    font-size: 14px;
-    line-height: 17px;
+    text-align: right;
   }
 }
