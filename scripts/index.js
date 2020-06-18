@@ -10,21 +10,18 @@ const formElement = popup.querySelector('.popup__container');
 
 
 function popupToggle () {
-if (popup.classList.contains('popup')) {
-nameInput.value = name.textContent;
-jobInput.value = job.textContent;
+  popup.classList.toggle('popup_opened');
+if (popup.classList.contains('popup_opened')) {
+  nameInput.value = name.textContent;
+  jobInput.value = job.textContent;
 }
-popup.classList.toggle('popup_opened');
 }
-
-nameInput.value = 'Жак-Ив Кусто';
-jobInput.value = 'Исследователь океана';
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
-  popup.classList.toggle('popup_opened');
   name.textContent = nameInput.value;
   job.textContent = jobInput.value;
+  popupToggle ()
 }
 
 openPopup.addEventListener('click', popupToggle);
