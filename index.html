@@ -50,19 +50,30 @@
       <div class="footer__text">© 2020 Mesto Russia</div>
     </footer>
 
-    <div class="popup">
-      <form class="popup__container" name="popup-form">
-          <button type="button" class="popup__close-button"></button>
+    <div class="popup popup_profile">
+      <form class="popup__container popup__container_profile" name="popup-form">
+          <button type="button" class="popup__close-button popup__close-button_profile"></button>
           <h2 class="popup__title">Редактировать профиль</h2>
-          <input type="text" placeholder="Имя" name="inpute-name" class="popup__text popup__text_type_name">
+          <input type="text" placeholder="Имя" name="inpute-name" class="popup__text popup__text_type_profile-name">
           <div class="popup__line"></div>
-          <input type="text" placeholder="Профессия" name="inpute-job" class="popup__text popup__text_type_job">
+          <input type="text" placeholder="Профессия" name="inpute-job" class="popup__text popup__text_type_profile-job">
           <div class="popup__line"></div>
-          <button type="submit" class="popup__save-button">Сохранить</button>
+          <button type="submit" class="popup__save-button popup__save-button_profile">Сохранить</button>
       </form>
     </div>
 
-    
+    <div class="popup popup_place">
+      <form class="popup__container popup__container_place" name="popup-form">
+          <button type="button" class="popup__close-button popup__close-button_place"></button>
+          <h2 class="popup__title">Новое место</h2>
+          <input type="text" placeholder="Название" name="inpute-place" class="popup__text popup__text_type_place-name">
+          <div class="popup__line"></div>
+          <input type="text" placeholder="Ссылка на картинку" name="inpute-link" class="popup__text popup__text_type_place-link">
+          <div class="popup__line"></div>
+          <button type="submit" class="popup__save-button popup__save-button_place">Сохранить</button>
+      </form>
+    </div>
+
   </div>
   <script src="./scripts/index.js"></script>
 </body>
