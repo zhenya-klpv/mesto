@@ -101,8 +101,10 @@ const templateElements = document.querySelector('.elements__template');
 function addElements(item) {
   const element = templateElements.content.cloneNode(true)
   element.querySelector('.elements__title').textContent = item.name;
-  element.querySelector(".elements__image").setAttribute("src", item.link);
-
+  element.querySelector('.elements__image').setAttribute('src', item.link);
+  element.querySelector('.elements__like-button').addEventListener('click', function(evt) {
+    evt.target.classList.toggle('elements__like-button_active');
+  });
   allElements.prepend(element);
 }
 

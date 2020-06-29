@@ -17,11 +17,6 @@
   outline: none;
 }
 
-.elements__like-button:active {
-  outline: none;
-  background-image: url('../../../images/heart-red.svg');
-}
-
 .elements__like-button:focus {
   outline: none;
 }
