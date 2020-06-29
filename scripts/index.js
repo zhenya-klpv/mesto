@@ -42,7 +42,6 @@ const place = document.querySelector('.popup__text_type_place-name');
 const link = document.querySelector('.popup__text_type_place-link');
 
 
-
 function popupPlaceToggle() {
   popupPlace.classList.toggle('popup_opened');
   if (popupPlace.classList.contains('popup_opened')) {
@@ -105,8 +104,21 @@ function addElements(item) {
   element.querySelector('.elements__like-button').addEventListener('click', function(evt) {
     evt.target.classList.toggle('elements__like-button_active');
   });
+  element.querySelector('.elements__delete-button').addEventListener('click', function(evt) {
+    const itemCard = evt.target.closest('.elements__item');
+    itemCard.remove();
+});
   allElements.prepend(element);
-}
+};
+
+
+function removeCard(e) {
+  const elementItem = e.target.closest('.elements__item');
+  elementItem.remove();
+  removeCard();
+};
+
+
 
 initialCards.reverse().forEach(function(item) {
   addElements(item);
