@@ -103,9 +103,9 @@ function addElements(item) {
   element.querySelector('.elements__title').textContent = item.name;
   element.querySelector(".elements__image").setAttribute("src", item.link);
 
-  allElements.append(element);
+  allElements.prepend(element);
 }
 
-initialCards.forEach(function(item) {
+initialCards.reverse().forEach(function(item) {
   addElements(item);
 });
