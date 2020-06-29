@@ -70,7 +70,7 @@ function addElements(item) {
   element.querySelector('.elements__title').setAttribute("alt", item.alt);
   element.querySelector(".elements__image").setAttribute("src", item.link);
 
-  allElements.prepend(element);
+  allElements.append(element);
 }
 
 initialCards.forEach(function (item) {
