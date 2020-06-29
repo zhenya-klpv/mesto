@@ -1,0 +1,13 @@
+.elements__like-button_active {
+  opacity: 1;
+  background: url('../../../images/black-like.svg');
+  background-size: 100%;
+  width: 20.76px;
+  height: 18.13px;
+  background-position: center;
+  background-repeat: no-repeat;
+  border: none;
+  transition: .3s;
+  cursor: pointer;
+  margin-right: 22px;
+}
