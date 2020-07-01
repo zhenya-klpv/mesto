@@ -1,9 +1,12 @@
 @import url(./__close-button/popup__close-button.css);
 @import url(./__container/popup__container.css);
+@import url(./__image-container/popup__image-container.css);
 @import url(./__line/popup__line.css);
 @import url(./__save-button/popup__save-button.css);
 @import url(./__text/popup__text.css);
 @import url(./__title/popup__title.css);
+@import url(./__image/popup__image.css);
+@import url(./__image-name/popup__image-name.css);
 
 
 .popup {
@@ -37,5 +40,22 @@
   height: 100%;
   background-color: black;
   opacity: .5;
+  z-index: -1;
+}
+
+.popup_image {
+  /* overflow-y: scroll; */
+}
+
+.popup_image:before {
+  content: "";
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: black;
+  opacity: .9;
   z-index: -1;
 }
