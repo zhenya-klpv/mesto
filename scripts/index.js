@@ -1,14 +1,14 @@
+//Попап открытия формы для редактирования профиля
 const openPopupProfile = document.querySelector('.profile__edit-button');
 const closePopupProfile = document.querySelector('.popup__close-button_profile');
 const popupProfile = document.querySelector('.popup_profile');
+
 const profile = document.querySelector('.profile');
 const name = profile.querySelector('.profile__name');
 const job = profile.querySelector('.profile__job');
 const nameInput = document.querySelector('.popup__text_type_profile-name');
 const jobInput = document.querySelector('.popup__text_type_profile-job');
 const formProfileElement = document.querySelector('.popup__container_profile');
-
-
 
 function popupProfileToggle() {
   popupProfile.classList.toggle('popup_opened');
@@ -29,12 +29,24 @@ openPopupProfile.addEventListener('click', popupProfileToggle);
 closePopupProfile.addEventListener('click', popupProfileToggle);
 formProfileElement.addEventListener('submit', formSubmitHandler);
 
+//Попап открытия увеличенного изображения
+
+const openPopupImage = document.querySelector('.elements__image');
+const closePopupImage = document.querySelector('.popup__close-button_image');
+const popupImage = document.querySelector('.popup_image');
+
+function popupImageToggle() {
+  popupImage.classList.toggle('popup_opened');
+}
+closePopupImage.addEventListener('click', popupImageToggle);
 
 
+//Попап открытия формы для добавления места
 
 const openPopupPlace = document.querySelector('.profile__add-button');
 const closePopupPlace = document.querySelector('.popup__close-button_place');
 const popupPlace = document.querySelector('.popup_place');
+
 const placeInput = document.querySelector('.popup__text_type_place-name');
 const linkInput = document.querySelector('.popup__text_type_place-link');
 const formPlaceElement = popupPlace.querySelector('.popup__container_place');
@@ -67,6 +79,8 @@ closePopupPlace.addEventListener('click', popupPlaceToggle);
 formPlaceElement.addEventListener('submit', formSubmitHandler);
 
 
+// 6 карточек
+
 const initialCards = [{
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -93,40 +107,43 @@ const initialCards = [{
   }
 ];
 
+
+//функция добавлени новой карточки
 const allElements = document.querySelector('.elements');
 const templateElements = document.querySelector('.elements__template');
+
 
 function addElements(item) {
   const element = templateElements.content.cloneNode(true)
   element.querySelector('.elements__title').textContent = item.name;
   element.querySelector('.elements__image').setAttribute('src', item.link);
   element.querySelector('.elements__like-button').addEventListener('click',
+
     function(evt) {
       evt.target.classList.toggle('elements__like-button_active');
     });
+
   element.querySelector('.elements__delete-button').addEventListener('click', function(evt) {
     const itemCard = evt.target.closest('.elements__item');
     itemCard.remove();
   });
+
+
+  // слушатель для открытия попапа с изображением
+  element.querySelector('.elements__image').addEventListener('click', () => {
+    const imageLink = document.querySelector('.popup__zoom-image')
+    imageLink.setAttribute('src', item.link)
+    const imageName = document.querySelector('.popup__image-name')
+    imageName.textContent = item.name
+    popupImageToggle()
+
+  });
+
   allElements.prepend(element);
-
-
-  const openPopupImage = document.querySelector('.elements__image');
-  const closePopupImage = document.querySelector('.popup__close-button');
-  popupImage = document.querySelector('.popup_image');
-
-  function popupImageToggle() {
-    popupImage.classList.toggle('popup_opened');
-    const imageLink = document.querySelector('.popup__image');
-    const imageName = document.querySelector('.popup__image-name');
-    imageLink.setAttribute('src', item.link);
-    imageName.innerText = item.name;
-  };
-  openPopupImage.addEventListener('click', popupImageToggle);
-  closePopupImage.addEventListener('click', popupImageToggle);
 };
 
 
+//функция удаления карточки
 function removeCard(e) {
   const elementItem = e.target.closest('.elements__item');
   elementItem.remove();
