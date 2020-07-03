@@ -14,8 +14,8 @@ function popupProfileToggle() {
   if (popupProfile.classList.contains('popup_opened')) {
     nameInput.value = name.textContent;
     jobInput.value = job.textContent;
-  }
-}
+  };
+};
 
 function formSubmitHandler(evt) {
   evt.preventDefault();
@@ -58,7 +58,7 @@ function popupPlaceToggle() {
   }
 }
 
-function formSubmitHandler(evt) {
+function formSubmitPlaceHandler(evt) {
   evt.preventDefault();
   const newPlace = [{
     name: placeInput.value,
@@ -72,7 +72,7 @@ function formSubmitHandler(evt) {
 
 openPopupPlace.addEventListener('click', popupPlaceToggle);
 closePopupPlace.addEventListener('click', popupPlaceToggle);
-formPlaceElement.addEventListener('submit', formSubmitHandler);
+formPlaceElement.addEventListener('submit', formSubmitPlaceHandler);
 
 
 const initialCards = [{

@@ -45,6 +45,18 @@
   z-index: -1;
 }
 
+.popup_place {
+  transition: .5s;
+}
+
+.popup_profile {
+  transition: .5s;
+}
+
+.popup_image {
+  transition: .5s;
+}
+
 .popup_image:before {
   content: "";
   display: block;
