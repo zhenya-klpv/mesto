@@ -1,6 +1,11 @@
 .elements__image {
   border-radius: 10px 10px 0px 0px;
-  max-width: 100%;
-  overflow: hidden;
-  background-size: cover;
+  width: 282px;
+  height: 282px;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-size: contain;
+}
+.elements__image:hover {
+  cursor: pointer;
 }

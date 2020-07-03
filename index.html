@@ -33,70 +33,52 @@
       </section>
 
       <section class="elements">
-        <div class="elements__item">
-          <img src="./images/fin.jpg" alt="Изображение городской площади" class="elements__image">
-          <div class="elements__title-container">
-            <h2 class="elements__title">Хельсинки Финляндия</h2>
-            <button type="button" class="elements__like-button"></button>
+        <template class="elements__template">
+          <div class="elements__item">
+            <img src="" alt="" class="elements__image">
+            <button type="button" class="elements__delete-button"></button>
+            <div class="elements__title-container">
+              <h2 class="elements__title"></h2>
+              <button type="button" class="elements__like-button"></button>
+            </div>
           </div>
-        </div>
-
-        <div class="elements__item">
-          <img src="./images/gdr.jpg" alt="Изображение Берлинской стены" class="elements__image">
-          <div class="elements__title-container">
-            <h2 class="elements__title">Берлин Германия</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </div>
-
-        <div class="elements__item">
-          <img src="./images/rome.jpg" alt="Изображение Римских развалин" class="elements__image">
-          <div class="elements__title-container">
-            <h2 class="elements__title">Рим Италия</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </div>
-
-        <div class="elements__item">
-          <img src="./images/brooklyn.jpg" alt="Изображение острова Манхеттен" class="elements__image">
-          <div class="elements__title-container">
-            <h2 class="elements__title">Манхеттен США</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </div>
-
-        <div class="elements__item">
-          <img src="./images/zurich.jpg" alt="Изображение городской набережной" class="elements__image">
-          <div class="elements__title-container">
-            <h2 class="elements__title">Цюрих Швейцария</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </div>
-
-        <div class="elements__item">
-          <img src="./images/phily.jpg" alt="Изображение небоскребов" class="elements__image">
-          <div class="elements__title-container">
-            <h2 class="elements__title">Филадельфия США</h2>
-            <button type="button" class="elements__like-button"></button>
-          </div>
-        </div>
+        </template>
       </section>
     </main>
+
     <footer class="footer">
       <div class="footer__text">© 2020 Mesto Russia</div>
     </footer>
 
-    <div class="popup">
-      <form class="popup__container" name="popup-form">
-          <button type="button" class="popup__close-button"></button>
-          <h2 class="popup__title">Редактировать профиль</h2>
-          <input type="text" placeholder="Имя" name="inpute-name" class="popup__text popup__text_type_name">
-          <div class="popup__line"></div>
-          <input type="text" placeholder="Профессия" name="inpute-job" class="popup__text popup__text_type_job">
-          <div class="popup__line"></div>
-          <button type="submit" class="popup__save-button">Сохранить</button>
+    <div class="popup popup_profile">
+      <form class="popup__container popup__container_profile" name="popup-form">
+        <button type="button" class="popup__close-button popup__close-button_profile"></button>
+        <h2 class="popup__title">Редактировать профиль</h2>
+        <input type="text" placeholder="Имя" name="inpute-name" class="popup__text popup__text_type_profile-name">
+        <div class="popup__line"></div>
+        <input type="text" placeholder="Профессия" name="inpute-job" class="popup__text popup__text_type_profile-job">
+        <div class="popup__line"></div>
+        <button type="submit" class="popup__save-button popup__save-button_profile">Сохранить</button>
       </form>
+    </div>
 
+    <div class="popup popup_place">
+      <form class="popup__container popup__container_place" name="popup-form">
+        <button type="button" class="popup__close-button popup__close-button_place"></button>
+        <h2 class="popup__title">Новое место</h2>
+        <input type="text" placeholder="Название" name="inpute-place" class="popup__text popup__text_type_place-name">
+        <div class="popup__line"></div>
+        <input type="text" placeholder="Ссылка на картинку" name="inpute-link" class="popup__text popup__text_type_place-link">
+        <div class="popup__line"></div>
+        <button type="submit" class="popup__save-button popup__save-button_place">Создать</button>
+      </form>
+    </div>
+    <div class="popup popup_image">
+      <div class="popup__image-container popup__image-container_image">
+        <button type="button" class="popup__close-button popup__close-button_image"></button>
+        <img src="" alt="" class="popup__zoom-image">
+        <div class="popup__image-name"></div>
+      </div>
     </div>
   </div>
   <script src="./scripts/index.js"></script>
