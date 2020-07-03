@@ -28,11 +28,12 @@ const placeInput = document.querySelector('.popup__text_type_place-name');
 const link = document.querySelector('.popup__text_type_place-link');
 const linkInput = document.querySelector('.popup__text_type_place-link');
 
-// функция открытия попоапа для редактирования профиля
+// функция открытия попоапа
 const togglePopup = function(popup) {
   popup.classList.toggle('popup_opened');
 };
 
+//попоап для редактирования профиля
 openPopupProfile.addEventListener('click', function(){
   togglePopup(popupProfile);
   submitForm();
@@ -58,21 +59,25 @@ closePopupProfile.addEventListener('click', function() {
 formProfileElement.addEventListener('submit', formSubmitHandler);
 
 
+//закрытие попоапа с изображением
+closePopupImage.addEventListener('click', function() {
+  togglePopup(popupImage);
+});
 
-function popupImageToggle() {
-  popupImage.classList.toggle('popup_opened');
-}
-closePopupImage.addEventListener('click', popupImageToggle);
+//попоап для длясоздания места
+openPopupPlace.addEventListener('click', function(){
+  togglePopup(popupPlace);
+  submitPlaceForm();
+});
 
 
+  function submitPlaceForm(){
+    if (popupPlace.classList.contains('popup_opened')) {
+      placeInput.value = place.textContent;
+      linkInput.value = link.textContent;
+    }
+  };
 
-function popupPlaceToggle() {
-  popupPlace.classList.toggle('popup_opened');
-  if (popupPlace.classList.contains('popup_opened')) {
-    placeInput.value = place.textContent;
-    linkInput.value = link.textContent;
-  }
-}
 
 function formSubmitPlaceHandler(evt) {
   evt.preventDefault();
@@ -83,11 +88,12 @@ function formSubmitPlaceHandler(evt) {
   newPlace.forEach(function(item) {
     addElements(item);
   });
-  popupPlaceToggle()
-}
+  togglePopup(popupPlace);
+};
 
-openPopupPlace.addEventListener('click', popupPlaceToggle);
-closePopupPlace.addEventListener('click', popupPlaceToggle);
+closePopupPlace.addEventListener('click', function() {
+  togglePopup(popupPlace)
+});
 formPlaceElement.addEventListener('submit', formSubmitPlaceHandler);
 
 
@@ -136,12 +142,13 @@ function addElements(item) {
     itemCard.remove();
   });
 
+// открытие попапа с изображнием
   element.querySelector('.elements__image').addEventListener('click', () => {
     const imageLink = document.querySelector('.popup__zoom-image')
     imageLink.setAttribute('src', item.link)
     const imageName = document.querySelector('.popup__image-name')
     imageName.textContent = item.name
-    popupImageToggle()
+    togglePopup(popupImage);
 
   });
 

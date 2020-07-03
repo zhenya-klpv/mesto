@@ -1,8 +1,7 @@
 .popup__image-container {
   width: min-content;
-  /* max-width: 75vw; */
   max-height: 75vh;
-  margin: 5% auto;
+  margin: 15% auto;
   z-index: 2;
   display: flex;
   flex-direction: column;
@@ -11,6 +10,6 @@
 
 @media screen and (max-width: 450px) {
   .popup__image-container {
-    margin: 15% 10px;
+    margin: 15% auto;
   }
 }
