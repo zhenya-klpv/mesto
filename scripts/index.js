@@ -1,53 +1,69 @@
-const openPopupProfile = document.querySelector('.profile__edit-button');
-const closePopupProfile = document.querySelector('.popup__close-button_profile');
+// popups
 const popupProfile = document.querySelector('.popup_profile');
+const popupImage = document.querySelector('.popup_image');
+const popupPlace = document.querySelector('.popup_place');
 
+// popups open buttons
+const openPopupProfile = document.querySelector('.profile__edit-button');
+const openPopupImage = document.querySelector('.elements__image');
+const openPopupPlace = document.querySelector('.profile__add-button');
+
+// popups close buttons
+const closePopupProfile = document.querySelector('.popup__close-button_profile');
+const closePopupImage = document.querySelector('.popup__close-button_image');
+const closePopupPlace = document.querySelector('.popup__close-button_place');
+
+// other var for popup profile
 const profile = document.querySelector('.profile');
-const name = profile.querySelector('.profile__name');
-const job = profile.querySelector('.profile__job');
-const nameInput = document.querySelector('.popup__text_type_profile-name');
-const jobInput = document.querySelector('.popup__text_type_profile-job');
 const formProfileElement = document.querySelector('.popup__container_profile');
+const name = profile.querySelector('.profile__name');
+const nameInput = document.querySelector('.popup__text_type_profile-name');
+const job = profile.querySelector('.profile__job');
+const jobInput = document.querySelector('.popup__text_type_profile-job');
 
-function popupProfileToggle() {
-  popupProfile.classList.toggle('popup_opened');
+//  other var for popup place
+const formPlaceElement = popupPlace.querySelector('.popup__container_place');
+const place = document.querySelector('.popup__text_type_place-name');
+const placeInput = document.querySelector('.popup__text_type_place-name');
+const link = document.querySelector('.popup__text_type_place-link');
+const linkInput = document.querySelector('.popup__text_type_place-link');
+
+// функция открытия попоапа для редактирования профиля
+const togglePopup = function(popup) {
+  popup.classList.toggle('popup_opened');
+};
+
+openPopupProfile.addEventListener('click', function(){
+  togglePopup(popupProfile);
+  submitForm();
+});
+
+const formSubmitHandler = function(evt) {
+  evt.preventDefault();
+  name.textContent = nameInput.value;
+  job.textContent = jobInput.value;
+  togglePopup(popupProfile);
+};
+
+function submitForm(){
   if (popupProfile.classList.contains('popup_opened')) {
     nameInput.value = name.textContent;
     jobInput.value = job.textContent;
   };
 };
 
-function formSubmitHandler(evt) {
-  evt.preventDefault();
-  name.textContent = nameInput.value;
-  job.textContent = jobInput.value;
-  popupProfileToggle()
-}
-
-openPopupProfile.addEventListener('click', popupProfileToggle);
-closePopupProfile.addEventListener('click', popupProfileToggle);
+closePopupProfile.addEventListener('click', function() {
+  togglePopup(popupProfile);
+});
 formProfileElement.addEventListener('submit', formSubmitHandler);
 
 
-const openPopupImage = document.querySelector('.elements__image');
-const closePopupImage = document.querySelector('.popup__close-button_image');
-const popupImage = document.querySelector('.popup_image');
 
 function popupImageToggle() {
   popupImage.classList.toggle('popup_opened');
 }
 closePopupImage.addEventListener('click', popupImageToggle);
 
-
-const openPopupPlace = document.querySelector('.profile__add-button');
-const closePopupPlace = document.querySelector('.popup__close-button_place');
-const popupPlace = document.querySelector('.popup_place');
-
-const placeInput = document.querySelector('.popup__text_type_place-name');
-const linkInput = document.querySelector('.popup__text_type_place-link');
-const formPlaceElement = popupPlace.querySelector('.popup__container_place');
-const place = document.querySelector('.popup__text_type_place-name');
-const link = document.querySelector('.popup__text_type_place-link');
 
 
 function popupPlaceToggle() {
