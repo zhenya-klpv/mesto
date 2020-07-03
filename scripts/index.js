@@ -1,4 +1,3 @@
-//Попап открытия формы для редактирования профиля
 const openPopupProfile = document.querySelector('.profile__edit-button');
 const closePopupProfile = document.querySelector('.popup__close-button_profile');
 const popupProfile = document.querySelector('.popup_profile');
@@ -29,7 +28,6 @@ openPopupProfile.addEventListener('click', popupProfileToggle);
 closePopupProfile.addEventListener('click', popupProfileToggle);
 formProfileElement.addEventListener('submit', formSubmitHandler);
 
-//Попап открытия увеличенного изображения
 
 const openPopupImage = document.querySelector('.elements__image');
 const closePopupImage = document.querySelector('.popup__close-button_image');
@@ -40,8 +38,6 @@ function popupImageToggle() {
 }
 closePopupImage.addEventListener('click', popupImageToggle);
 
-
-//Попап открытия формы для добавления места
 
 const openPopupPlace = document.querySelector('.profile__add-button');
 const closePopupPlace = document.querySelector('.popup__close-button_place');
@@ -79,8 +75,6 @@ closePopupPlace.addEventListener('click', popupPlaceToggle);
 formPlaceElement.addEventListener('submit', formSubmitHandler);
 
 
-// 6 карточек
-
 const initialCards = [{
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -107,8 +101,6 @@ const initialCards = [{
   }
 ];
 
-
-//функция добавлени новой карточки
 const allElements = document.querySelector('.elements');
 const templateElements = document.querySelector('.elements__template');
 
@@ -128,8 +120,6 @@ function addElements(item) {
     itemCard.remove();
   });
 
-
-  // слушатель для открытия попапа с изображением
   element.querySelector('.elements__image').addEventListener('click', () => {
     const imageLink = document.querySelector('.popup__zoom-image')
     imageLink.setAttribute('src', item.link)
@@ -143,7 +133,6 @@ function addElements(item) {
 };
 
 
-//функция удаления карточки
 function removeCard(e) {
   const elementItem = e.target.closest('.elements__item');
   elementItem.remove();
