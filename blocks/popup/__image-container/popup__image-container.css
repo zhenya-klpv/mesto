@@ -3,10 +3,3 @@
   max-height: 75vh;
   position: relative;
 }
-
-/*
-@media screen and (max-width: 450px) {
-  .popup__image-container {
-    margin: 15% auto;
-  }
-} */
