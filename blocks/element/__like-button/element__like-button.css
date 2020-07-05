@@ -1,4 +1,4 @@
-.elements__like-button {
+.element__like-button {
   background-image: url('../../../images/heart.svg');
   background-size: 100%;
   width: 20.76px;
@@ -12,11 +12,11 @@
   margin-right: 22px;
 }
 
-.elements__like-button:hover {
+.element__like-button:hover {
   opacity: .6;
   outline: none;
 }
 
-.elements__like-button:focus {
+.element__like-button:focus {
   outline: none;
 }

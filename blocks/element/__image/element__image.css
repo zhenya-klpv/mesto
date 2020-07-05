@@ -1,4 +1,4 @@
-.elements__image {
+.element__image {
   border-radius: 10px 10px 0px 0px;
   width: 282px;
   height: 282px;
@@ -6,6 +6,7 @@
   background-repeat: no-repeat;
   background-size: contain;
 }
-.elements__image:hover {
+
+.element__image:hover {
   cursor: pointer;
 }

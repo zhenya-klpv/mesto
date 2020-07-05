@@ -3,15 +3,20 @@ const popupProfile = document.querySelector('.popup_profile');
 const popupImage = document.querySelector('.popup_image');
 const popupPlace = document.querySelector('.popup_place');
 
+
+
 // popups open buttons
 const openPopupProfile = document.querySelector('.profile__edit-button');
-const openPopupImage = document.querySelector('.elements__image');
 const openPopupPlace = document.querySelector('.profile__add-button');
+
+
 
 // popups close buttons
 const closePopupProfile = document.querySelector('.popup__close-button_profile');
 const closePopupImage = document.querySelector('.popup__close-button_image');
 const closePopupPlace = document.querySelector('.popup__close-button_place');
+
+
 
 // other var for popup profile
 const profile = document.querySelector('.profile');
@@ -21,6 +26,8 @@ const nameInput = document.querySelector('.popup__text_type_profile-name');
 const job = profile.querySelector('.profile__job');
 const jobInput = document.querySelector('.popup__text_type_profile-job');
 
+
+
 //  other var for popup place
 const formPlaceElement = popupPlace.querySelector('.popup__container_place');
 const place = document.querySelector('.popup__text_type_place-name');
@@ -28,75 +35,11 @@ const placeInput = document.querySelector('.popup__text_type_place-name');
 const link = document.querySelector('.popup__text_type_place-link');
 const linkInput = document.querySelector('.popup__text_type_place-link');
 
-// функция открытия попоапа
-const togglePopup = function(popup) {
-  popup.classList.toggle('popup_opened');
-};
-
-//попоап для редактирования профиля
-openPopupProfile.addEventListener('click', function(){
-  togglePopup(popupProfile);
-  submitForm();
-});
-
-const formSubmitHandler = function(evt) {
-  evt.preventDefault();
-  name.textContent = nameInput.value;
-  job.textContent = jobInput.value;
-  togglePopup(popupProfile);
-};
-
-function submitForm(){
-  if (popupProfile.classList.contains('popup_opened')) {
-    nameInput.value = name.textContent;
-    jobInput.value = job.textContent;
-  };
-};
-
-closePopupProfile.addEventListener('click', function() {
-  togglePopup(popupProfile);
-});
-formProfileElement.addEventListener('submit', formSubmitHandler);
 
 
-//закрытие попоапа с изображением
-closePopupImage.addEventListener('click', function() {
-  togglePopup(popupImage);
-});
-
-//попоап для длясоздания места
-openPopupPlace.addEventListener('click', function(){
-  togglePopup(popupPlace);
-  submitPlaceForm();
-});
-
-
-  function submitPlaceForm(){
-    if (popupPlace.classList.contains('popup_opened')) {
-      placeInput.value = place.textContent;
-      linkInput.value = link.textContent;
-    }
-  };
-
-
-function formSubmitPlaceHandler(evt) {
-  evt.preventDefault();
-  const newPlace = [{
-    name: placeInput.value,
-    link: linkInput.value,
-  }]
-  newPlace.forEach(function(item) {
-    addElements(item);
-  });
-  togglePopup(popupPlace);
-};
-
-closePopupPlace.addEventListener('click', function() {
-  togglePopup(popupPlace)
-});
-formPlaceElement.addEventListener('submit', formSubmitPlaceHandler);
-
-
+//  other var
+const addElement = document.querySelector('.element');
+const templateElements = document.querySelector('.element__template');
 const initialCards = [{
     name: 'Архыз',
     link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
@@ -123,45 +66,122 @@ const initialCards = [{
   }
 ];
 
-const allElements = document.querySelector('.elements');
-const templateElements = document.querySelector('.elements__template');
 
 
-function addElements(item) {
+// функция открытия попоапа
+const togglePopup = function(popup) {
+  popup.classList.toggle('popup_opened');
+}
+
+
+
+//попап для редактирования профиля
+const formSubmitHandler = function(evt) { // вводим данные и закрытие формы
+  evt.preventDefault();
+  name.textContent = nameInput.value;
+  job.textContent = jobInput.value;
+  togglePopup(popupProfile);
+};
+
+function handleOpenPopupProfile() { // функция открытия модального окна
+  togglePopup(popupProfile); // открытие модального окна
+  placeHoldersProfile(); // сохранение и отображение данных имени и профессии при каждом новом открытии модального окна
+}
+
+function handleClosePopupProfile() { // закрытие в попапа
+  togglePopup(popupProfile);
+}
+
+function placeHoldersProfile() { // имя и профессия для отображения по умолчании при открытии попапа
+  if (popupProfile.classList.contains('popup_opened')) {
+    nameInput.value = name.textContent;
+    jobInput.value = job.textContent;
+  };
+}
+
+openPopupProfile.addEventListener('click', handleOpenPopupProfile); // слушатель для открытие модального окна
+openPopupProfile.addEventListener('click', handleOpenPopupProfile); // слушатель для открытие модального окна
+closePopupProfile.addEventListener('click', handleClosePopupProfile); // слушатесль для закрытие модального окна
+formProfileElement.addEventListener('submit', formSubmitHandler); // слушатель для записи формы
+
+
+
+//попап с изображением
+function handleOpenPopupImage() { //функция для открытия модального окна
+  togglePopup(popupPlace);
+  placeHolderPlace();
+}
+
+function handleClosePopupImage() { // функция для закрытие модального окна
+  togglePopup(popupImage);
+}
+
+openPopupPlace.addEventListener('click', handleOpenPopupImage); // слушатель для открытие модального окна
+closePopupImage.addEventListener('click', handleClosePopupImage); // слушатель для закрытие модального окна
+
+
+//попапдля создания нового места
+function handleClosePopupPlace() { // функция закрытия попапа
+  togglePopup(popupPlace);
+}
+
+function placeHolderPlace() { // имя и профессия для отображения по умолчании при открытии попапа
+  if (popupPlace.classList.contains('popup_opened')) {
+    placeInput.value = '';
+    linkInput.value = '';
+  };
+}
+
+function formSubmitPlaceHandler(evt) { // функция сохранения новой карточки
+  evt.preventDefault();
+  const newPlace = [{
+    name: placeInput.value,
+    link: linkInput.value,
+  }];
+  newPlace.forEach(function(item) { //// Айгуль, скажите, пожалуйста, что не так с этой строкой кода? Если newPlace  добавлять как объект, то ломается логикадобавления нового места. И почему он ДОЛЖЕН быть объектом?
+    addCard(item);
+  });
+  togglePopup(popupPlace);
+}
+
+closePopupPlace.addEventListener('click', handleClosePopupPlace); // слушатель для закрытие модального окна
+formPlaceElement.addEventListener('submit', formSubmitPlaceHandler); // слушатель для записи формы
+
+
+
+// добавление  карточек
+function addCard(item) { // функция добавления новой карточки
   const element = templateElements.content.cloneNode(true)
-  element.querySelector('.elements__title').textContent = item.name;
-  element.querySelector('.elements__image').setAttribute('src', item.link);
-  element.querySelector('.elements__like-button').addEventListener('click',
+  element.querySelector('.element__title').textContent = item.name;
+  element.querySelector('.element__image').setAttribute('src', item.link);
+  element.querySelector('.element__image').setAttribute('alt', 'Изображение')
+  element.querySelector('.element__like-button').addEventListener('click',
+    function(evt) { // лайк карточки
+      evt.target.classList.toggle('element__like-button_active');
+    })
 
-    function(evt) {
-      evt.target.classList.toggle('elements__like-button_active');
-    });
-
-  element.querySelector('.elements__delete-button').addEventListener('click', function(evt) {
-    const itemCard = evt.target.closest('.elements__item');
+  element.querySelector('.element__delete-button').addEventListener('click', function(evt) { // удаление карточки
+    const itemCard = evt.target.closest('.element__item');
     itemCard.remove();
   });
 
-// открытие попапа с изображнием
-  element.querySelector('.elements__image').addEventListener('click', () => {
-    const imageLink = document.querySelector('.popup__zoom-image')
-    imageLink.setAttribute('src', item.link)
-    const imageName = document.querySelector('.popup__image-name')
-    imageName.textContent = item.name
-    togglePopup(popupImage);
+  // открытие попапа с изображнием
+  function getImageAndLink() {
+    const imageLink = document.querySelector('.popup__zoom-image');
+    const imageName = document.querySelector('.popup__image-name');
+    imageLink.setAttribute('src', item.link);
+    imageName.textContent = item.name;
+  }
 
+
+  element.querySelector('.element__image').addEventListener('click', () => {
+    getImageAndLink();
+    togglePopup(popupImage);
   });
 
-  allElements.prepend(element);
-};
-
-
-function removeCard(e) {
-  const elementItem = e.target.closest('.elements__item');
-  elementItem.remove();
-  removeCard();
+  addElement.prepend(element); // Айгуль, скажите, пожалуйста, что не так с этой строкой кода? Она же добавляет элемент как нужно.
 };
 
 initialCards.reverse().forEach(function(item) {
-  addElements(item);
+  addCard(item);
 });
