@@ -79,12 +79,12 @@ const formSubmitHandler = function(evt) { // вводим данные и зак
   name.textContent = nameInput.value;
   job.textContent = jobInput.value;
   togglePopup(popupProfile);
-};
+}
 
 function handleOpenPopupProfile() { // функция открытия модального окна
-  togglePopup(popupProfile); // открытие модального окна
   nameInput.value = name.textContent;
   jobInput.value = job.textContent;
+  togglePopup(popupProfile); // открытие модального окна
 }
 
 
@@ -102,11 +102,11 @@ function handleOpenPopupPlace() { //функция для открытия мо�
 
 closePopupImage.addEventListener('click', () => togglePopup(popupImage)); // слушатель для закрытия модального окна
 
-// функциядло отрисовки карточек
+// функция для отрисовки карточек
 const renderCard = (item, addElement) => {
   const newCard = addCard(item); // тут создается разметка карточки
   addElement.prepend(newCard); // тут она отрисовывается
-};
+}
 
 //создание нового места
 function formSubmitPlaceHandler(evt) { // функция сохранения новой карточки
@@ -115,7 +115,7 @@ function formSubmitPlaceHandler(evt) { // функция сохранения н
     name: placeInput.value,
     link: linkInput.value,
   };
-  addCard(newPlace);
+  // addCard(newPlace);
   togglePopup(popupPlace);
   renderCard(newPlace, addElement)
 }
@@ -125,43 +125,44 @@ openPopupPlace.addEventListener('click', handleOpenPopupPlace); // слушат�
 closePopupPlace.addEventListener('click', () => togglePopup(popupPlace)); // слушатель для закрытие модального окна
 formPlaceElement.addEventListener('submit', formSubmitPlaceHandler); // слушатель для записи формы
 
+// открытие попапа с изображнием
+function setImageAndLink(setItem) {
+  const element = setItem;
+  const imageLink = document.querySelector('.popup__zoom-image');
+  const imageName = document.querySelector('.popup__image-name');
+  imageLink.setAttribute('src', setItem.link);
+  imageName.textContent = setItem.name;
+}
+
 
 // создание  карточек
 const addCard = item => { // функция добавления новой карточки
   const element = templateElements.content.cloneNode(true)
   const elementItemName = element.querySelector('.element__title');
-  const elementItemLink = element.querySelector('.element__image');
-  const elementItemAlt = element.querySelector('.element__image');
+  const elementItemLinkandAlt = element.querySelector('.element__image');
   const elementLikeButton = element.querySelector('.element__like-button');
   const elementDeleteButton = element.querySelector('.element__delete-button');
   elementItemName.textContent = item.name;
-  elementItemLink.setAttribute('src', item.link);
-  elementItemAlt.setAttribute('alt', 'Изображение');
+  elementItemLinkandAlt.setAttribute('src', item.link);
+  elementItemLinkandAlt.setAttribute('alt', 'Изображение');
 
   elementLikeButton.addEventListener('click',
-    function(evt) { // лайк карточки
+    (evt) => { // лайк карточки
       evt.target.classList.toggle('element__like-button_active');
-    })
+    });
 
-  elementDeleteButton.addEventListener('click', function(evt) { // удаление карточки
+  elementDeleteButton.addEventListener('click', (evt) => { // удаление карточки
     const itemCard = evt.target.closest('.element__item');
     itemCard.remove();
   });
 
-  // открытие попапа с изображнием
-  function setImageAndLink() {
-    const imageLink = document.querySelector('.popup__zoom-image');
-    const imageName = document.querySelector('.popup__image-name');
-    imageLink.setAttribute('src', item.link);
-    imageName.textContent = item.name;
-  }
-
   element.querySelector('.element__image').addEventListener('click', () => {
-    setImageAndLink();
+    setImageAndLink(item);
     togglePopup(popupImage);
   });
   return element;
 }
+
 
 initialCards.reverse().forEach((item) => {
   renderCard(item, addElement);
