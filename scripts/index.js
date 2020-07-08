@@ -30,9 +30,7 @@ const jobInput = document.querySelector('.popup__text_type_profile-job');
 
 //  other var for popup place
 const formPlaceElement = popupPlace.querySelector('.popup__container_place');
-const place = document.querySelector('.popup__text_type_place-name');
 const placeInput = document.querySelector('.popup__text_type_place-name');
-const link = document.querySelector('.popup__text_type_place-link');
 const linkInput = document.querySelector('.popup__text_type_place-link');
 
 
@@ -85,103 +83,87 @@ const formSubmitHandler = function(evt) { // вводим данные и зак
 
 function handleOpenPopupProfile() { // функция открытия модального окна
   togglePopup(popupProfile); // открытие модального окна
-  placeHoldersProfile(); // сохранение и отображение данных имени и профессии при каждом новом открытии модального окна
+  nameInput.value = name.textContent;
+  jobInput.value = job.textContent;
 }
 
-function handleClosePopupProfile() { // закрытие в попапа
-  togglePopup(popupProfile);
-}
-
-function placeHoldersProfile() { // имя и профессия для отображения по умолчании при открытии попапа
-  if (popupProfile.classList.contains('popup_opened')) {
-    nameInput.value = name.textContent;
-    jobInput.value = job.textContent;
-  };
-}
 
 openPopupProfile.addEventListener('click', handleOpenPopupProfile); // слушатель для открытие модального окна
-openPopupProfile.addEventListener('click', handleOpenPopupProfile); // слушатель для открытие модального окна
-closePopupProfile.addEventListener('click', handleClosePopupProfile); // слушатесль для закрытие модального окна
+closePopupProfile.addEventListener('click', () => togglePopup(popupProfile)); // слушатесль для закрытие модального окна
 formProfileElement.addEventListener('submit', formSubmitHandler); // слушатель для записи формы
 
 
 
+
 //попап с изображением
-function handleOpenPopupImage() { //функция для открытия модального окна
+function handleOpenPopupPlace() { //функция для открытия модального окна
   togglePopup(popupPlace);
-  placeHolderPlace();
+  placeInput.value = '';
+  linkInput.value = '';
 }
 
-function handleClosePopupImage() { // функция для закрытие модального окна
-  togglePopup(popupImage);
-}
+closePopupImage.addEventListener('click', () => togglePopup(popupImage)); // слушатель для закрытие модального окна
 
-openPopupPlace.addEventListener('click', handleOpenPopupImage); // слушатель для открытие модального окна
-closePopupImage.addEventListener('click', handleClosePopupImage); // слушатель для закрытие модального окна
+const renderCard = (item, addElement) => {
+  const newCard = addCard(item); // тут создается разметка карточки
+  addElement.prepend(newCard); // тут она отрисовывается
+};
 
-
-//попапдля создания нового места
-function handleClosePopupPlace() { // функция закрытия попапа
-  togglePopup(popupPlace);
-}
-
-function placeHolderPlace() { // имя и профессия для отображения по умолчании при открытии попапа
-  if (popupPlace.classList.contains('popup_opened')) {
-    placeInput.value = '';
-    linkInput.value = '';
-  };
-}
-
+//создания нового места
 function formSubmitPlaceHandler(evt) { // функция сохранения новой карточки
   evt.preventDefault();
-  const newPlace = [{
+  const newPlace = {
     name: placeInput.value,
     link: linkInput.value,
-  }];
-  newPlace.forEach(function(item) { //// Айгуль, скажите, пожалуйста, что не так с этой строкой кода? Если newPlace  добавлять как объект, то ломается логикадобавления нового места. И почему он ДОЛЖЕН быть объектом?
-    addCard(item);
-  });
+  };
+  addCard(newPlace);
   togglePopup(popupPlace);
+  renderCard(newPlace, addElement)
 }
 
-closePopupPlace.addEventListener('click', handleClosePopupPlace); // слушатель для закрытие модального окна
+
+openPopupPlace.addEventListener('click', handleOpenPopupPlace); // слушатель для открытие модального окна
+closePopupPlace.addEventListener('click', () => togglePopup(popupPlace)); // слушатель для закрытие модального окна
 formPlaceElement.addEventListener('submit', formSubmitPlaceHandler); // слушатель для записи формы
 
 
-
-// добавление  карточек
-function addCard(item) { // функция добавления новой карточки
+// создание  карточек
+const addCard = item => { // функция добавления новой карточки
   const element = templateElements.content.cloneNode(true)
-  element.querySelector('.element__title').textContent = item.name;
-  element.querySelector('.element__image').setAttribute('src', item.link);
-  element.querySelector('.element__image').setAttribute('alt', 'Изображение')
-  element.querySelector('.element__like-button').addEventListener('click',
+  const elementItemName = element.querySelector('.element__title');
+  const elementItemLink = element.querySelector('.element__image');
+  const elementItemAlt = element.querySelector('.element__image');
+  const elementLikeButton = element.querySelector('.element__like-button');
+  const elementDeleteButton = element.querySelector('.element__delete-button');
+  elementItemName.textContent = item.name;
+  elementItemLink.setAttribute('src', item.link);
+  elementItemAlt.setAttribute('alt', 'Изображение');
+
+  elementLikeButton.addEventListener('click',
     function(evt) { // лайк карточки
       evt.target.classList.toggle('element__like-button_active');
     })
 
-  element.querySelector('.element__delete-button').addEventListener('click', function(evt) { // удаление карточки
+  elementDeleteButton.addEventListener('click', function(evt) { // удаление карточки
     const itemCard = evt.target.closest('.element__item');
     itemCard.remove();
   });
 
   // открытие попапа с изображнием
-  function getImageAndLink() {
+  function setImageAndLink() {
     const imageLink = document.querySelector('.popup__zoom-image');
     const imageName = document.querySelector('.popup__image-name');
     imageLink.setAttribute('src', item.link);
     imageName.textContent = item.name;
   }
 
-
   element.querySelector('.element__image').addEventListener('click', () => {
-    getImageAndLink();
+    setImageAndLink();
     togglePopup(popupImage);
   });
+  return element;
+}
 
-  addElement.prepend(element); // Айгуль, скажите, пожалуйста, что не так с этой строкой кода? Она же добавляет элемент как нужно.
-};
-
-initialCards.reverse().forEach(function(item) {
-  addCard(item);
+initialCards.reverse().forEach((item) => {
+  renderCard(item, addElement);
 });
