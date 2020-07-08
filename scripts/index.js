@@ -93,8 +93,6 @@ closePopupProfile.addEventListener('click', () => togglePopup(popupProfile)); //
 formProfileElement.addEventListener('submit', formSubmitHandler); // слушатель для записи формы
 
 
-
-
 //попап с изображением
 function handleOpenPopupPlace() { //функция для открытия модального окна
   togglePopup(popupPlace);
@@ -102,14 +100,15 @@ function handleOpenPopupPlace() { //функция для открытия мо�
   linkInput.value = '';
 }
 
-closePopupImage.addEventListener('click', () => togglePopup(popupImage)); // слушатель для закрытие модального окна
+closePopupImage.addEventListener('click', () => togglePopup(popupImage)); // слушатель для закрытия модального окна
 
+// функциядло отрисовки карточек
 const renderCard = (item, addElement) => {
   const newCard = addCard(item); // тут создается разметка карточки
   addElement.prepend(newCard); // тут она отрисовывается
 };
 
-//создания нового места
+//создание нового места
 function formSubmitPlaceHandler(evt) { // функция сохранения новой карточки
   evt.preventDefault();
   const newPlace = {
