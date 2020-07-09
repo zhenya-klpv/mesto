@@ -127,7 +127,6 @@ formPlaceElement.addEventListener('submit', formSubmitPlaceHandler); // слуш
 
 // открытие попапа с изображнием
 function setImageAndLink(setItem) {
-  const element = setItem;
   const imageLink = document.querySelector('.popup__zoom-image');
   const imageName = document.querySelector('.popup__image-name');
   imageLink.setAttribute('src', setItem.link);
