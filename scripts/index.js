@@ -69,6 +69,17 @@ const initialCards = [{
 // функция открытия попоапа
 const togglePopup = function(popup) {
   popup.classList.toggle('popup_opened');
+  document.addEventListener('keydown', closePopupEsc); // слушатель закрытия на Escape
+}
+
+
+// функция закрытия на Escape
+const closePopupEsc = function (evt){
+  const activePopup = document.querySelector('.popup_opened')
+  if (evt.key === 'Escape') {
+    togglePopup(activePopup)
+  }
+  document.removeEventListener('keydown', closePopupEsc);
 }
 
 
