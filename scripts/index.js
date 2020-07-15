@@ -4,18 +4,15 @@ const popupImage = document.querySelector('.popup_image');
 const popupPlace = document.querySelector('.popup_place');
 
 
-
 // popups open buttons
 const openPopupProfile = document.querySelector('.profile__edit-button');
 const openPopupPlace = document.querySelector('.profile__add-button');
-
 
 
 // popups close buttons
 const closePopupProfile = document.querySelector('.popup__close-button_profile');
 const closePopupImage = document.querySelector('.popup__close-button_image');
 const closePopupPlace = document.querySelector('.popup__close-button_place');
-
 
 
 // other var for popup profile
@@ -27,12 +24,10 @@ const job = profile.querySelector('.profile__job');
 const jobInput = document.querySelector('.popup__text_type_profile-job');
 
 
-
 //  other var for popup place
 const formPlaceElement = popupPlace.querySelector('.popup__container_place');
 const placeInput = document.querySelector('.popup__text_type_place-name');
 const linkInput = document.querySelector('.popup__text_type_place-link');
-
 
 
 //  other var
@@ -74,14 +69,22 @@ const togglePopup = function(popup) {
 
 
 // функция закрытия на Escape
-const closePopupEsc = function (evt){
+const closePopupEsc = function(evt) {
   const activePopup = document.querySelector('.popup_opened')
   if (evt.key === 'Escape') {
-    togglePopup(activePopup)
+    togglePopup(activePopup);
   }
   document.removeEventListener('keydown', closePopupEsc);
 }
 
+
+//функция закрытия на overlay
+const closePopupOvrl = function(evt) {
+  if (evt.target !== evt.currentTarget) {
+    evt.target.classList.remove('popup_opened');
+  }
+};
+document.addEventListener('click', closePopupOvrl);
 
 
 //попап для редактирования профиля
@@ -91,6 +94,7 @@ const formSubmitHandler = function(evt) { // вводим данные и зак
   job.textContent = jobInput.value;
   togglePopup(popupProfile);
 }
+
 
 function handleOpenPopupProfile() { // функция открытия модального окна
   nameInput.value = name.textContent;
