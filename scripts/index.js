@@ -181,3 +181,38 @@ const addCard = item => { // функция добавления новой ка
 initialCards.reverse().forEach((item) => {
   renderCard(item, addElement);
 });
+
+
+function enableValidation({
+  formSelector,
+  inputSelector,
+  submitButtonSelector,
+  inactiveButtonClass,
+  inputErrorClass
+}) {
+
+  const forms = Array.from(document.querySelectorAll(formSelector));
+  forms.forEach(form => {
+    //обработчик для отмены сабмита
+    form.addEventListener('submit', evt => evt.preventDefault());
+
+
+    const inputs = Array.from(document.querySelectorAll(inputSelector));
+    inputs.forEach(form => {
+    input.addEventListener('input', evt => console.log(evt));
+  });
+})
+}
+
+
+
+
+
+enableValidation({
+  formSelector: '.popup__form',
+  inputSelector: '.popup__input',
+  submitButtonSelector: '.popup__button',
+  inactiveButtonClass: '.popup__button_disabled',
+  inputErrorClass: '.popup__input_type_error',
+  errorClass: '.popup__error_visible'
+});
