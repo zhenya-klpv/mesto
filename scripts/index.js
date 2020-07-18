@@ -4,18 +4,15 @@ const popupImage = document.querySelector('.popup_image');
 const popupPlace = document.querySelector('.popup_place');
 
 
-
 // popups open buttons
 const openPopupProfile = document.querySelector('.profile__edit-button');
 const openPopupPlace = document.querySelector('.profile__add-button');
-
 
 
 // popups close buttons
 const closePopupProfile = document.querySelector('.popup__close-button_profile');
 const closePopupImage = document.querySelector('.popup__close-button_image');
 const closePopupPlace = document.querySelector('.popup__close-button_place');
-
 
 
 // other var for popup profile
@@ -25,7 +22,6 @@ const name = profile.querySelector('.profile__name');
 const nameInput = document.querySelector('.popup__text_type_profile-name');
 const job = profile.querySelector('.profile__job');
 const jobInput = document.querySelector('.popup__text_type_profile-job');
-
 
 
 //  other var for popup place
@@ -65,12 +61,42 @@ const initialCards = [{
 ];
 
 
-
 // функция открытия попоапа
 const togglePopup = function(popup) {
   popup.classList.toggle('popup_opened');
+  // hideSubmitButton();
+  document.addEventListener('keydown', closePopupEsc); // слушатель закрытия на Escape
 }
 
+
+//функция для деактивации кнопки сабмита при первом открытии
+function hideSubmitButton() {
+  const button = document.querySelector('.popup__save-button_place');
+  const input = document.querySelector('.popup__text_type_place-name');
+  if (input.value === "") {
+    // console.log(input.value)
+    button.classList.add('popup__button_disabled');
+    button.setAttribute('disabled', true);
+  };
+}
+
+// функция закрытия на Escape
+const closePopupEsc = function(evt) {
+  const activePopup = document.querySelector('.popup_opened')
+  if (evt.key === 'Escape') {
+    togglePopup(activePopup);
+  }
+  document.removeEventListener('keydown', closePopupEsc);
+}
+
+
+//функция закрытия на overlay
+const closePopupOvrl = function(evt) {
+  if (evt.target !== evt.currentTarget) {
+    evt.target.classList.remove('popup_opened');
+  }
+};
+document.addEventListener('click', closePopupOvrl);
 
 
 //попап для редактирования профиля
@@ -79,7 +105,9 @@ const formSubmitHandler = function(evt) { // вводим данные и зак
   name.textContent = nameInput.value;
   job.textContent = jobInput.value;
   togglePopup(popupProfile);
+
 }
+
 
 function handleOpenPopupProfile() { // функция открытия модального окна
   nameInput.value = name.textContent;
@@ -88,16 +116,17 @@ function handleOpenPopupProfile() { // функция открытия мода�
 }
 
 
-openPopupProfile.addEventListener('click', handleOpenPopupProfile); // слушатель для открытие модального окна
+openPopupProfile.addEventListener('click', handleOpenPopupProfile, ); // слушатель для открытие модального окна
 closePopupProfile.addEventListener('click', () => togglePopup(popupProfile)); // слушатесль для закрытие модального окна
 formProfileElement.addEventListener('submit', formSubmitHandler); // слушатель для записи формы
 
 
-//попап с изображением
+
 function handleOpenPopupPlace() { //функция для открытия модального окна
   togglePopup(popupPlace);
   placeInput.value = '';
   linkInput.value = '';
+  hideSubmitButton();
 }
 
 closePopupImage.addEventListener('click', () => togglePopup(popupImage)); // слушатель для закрытия модального окна
@@ -115,13 +144,12 @@ function formSubmitPlaceHandler(evt) { // функция сохранения н
     name: placeInput.value,
     link: linkInput.value,
   };
-  // addCard(newPlace);
   togglePopup(popupPlace);
   renderCard(newPlace, addElement)
 }
 
 
-openPopupPlace.addEventListener('click', handleOpenPopupPlace); // слушатель для открытие модального окна
+openPopupPlace.addEventListener('click', handleOpenPopupPlace, hideSubmitButton()); // слушатель для открытие модального окна
 closePopupPlace.addEventListener('click', () => togglePopup(popupPlace)); // слушатель для закрытие модального окна
 formPlaceElement.addEventListener('submit', formSubmitPlaceHandler); // слушатель для записи формы
 
