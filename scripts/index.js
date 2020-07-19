@@ -1,3 +1,8 @@
+import {
+  initialCards
+} from './utils.js';
+
+
 // popups
 const popupProfile = document.querySelector('.popup_profile');
 const popupImage = document.querySelector('.popup_image');
@@ -34,12 +39,10 @@ const linkInput = document.querySelector('.popup__text_type_place-link');
 //  other var
 const addElement = document.querySelector('.element');
 const templateElements = document.querySelector('.element__template');
-import {initialCards} from'./utils.js';
 
 // функция открытия попоапа
 const togglePopup = function(popup) {
   popup.classList.toggle('popup_opened');
-  // hideSubmitButton();
   document.addEventListener('keydown', closePopupEsc); // слушатель закрытия на Escape
 }
 
@@ -49,7 +52,6 @@ function disableSubmitButton() {
   const button = document.querySelector('.popup__save-button_place');
   const input = document.querySelector('.popup__text_type_place-name');
   if (input.value === "") {
-    // console.log(input.value)
     button.classList.add('popup__button_disabled');
     button.setAttribute('disabled', true);
   };
@@ -66,7 +68,7 @@ const closePopupEsc = function(evt) {
 
 
 //функция закрытия на overlay
-const closePopupOverlay  = function(evt) {
+const closePopupOverlay = function(evt) {
   if (evt.target !== evt.currentTarget) {
     evt.target.classList.remove('popup_opened');
   }

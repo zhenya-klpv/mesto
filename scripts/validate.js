@@ -1,4 +1,4 @@
-const obj = {
+const alidationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
@@ -7,7 +7,7 @@ const obj = {
   errorClass: 'popup__error_visible'
 };
 
-enableValidation(obj);
+enableValidation(alidationConfig);
 
 
 // запуск процесса валидации
@@ -17,7 +17,7 @@ function enableValidation({
 }) {
   const forms = Array.from(document.querySelectorAll(formSelector));
   forms.forEach((form) => {
-    form.addEventListener("submit", evt => evt.preventDefault());
+    form.addEventListener('submit', evt => evt.preventDefault());
     setEventListeners(form, rest);
   });
 };
@@ -33,7 +33,7 @@ function setEventListeners(form, {
   const inputs = Array.from(form.querySelectorAll(inputSelector));
   const button = form.querySelector(submitButtonSelector);
   inputs.forEach((input) => {
-    input.addEventListener("input", () => {
+    input.addEventListener('input', () => {
       isValid(form, input, rest);
       toggleSubmitButton(inputs, input, button, inactiveButtonClass);
     });
