@@ -1,3 +1,34 @@
+// import {initialCards} from'./utils.js';
+
+
+const initialCards = [{
+    name: 'Архыз',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
+  },
+  {
+    name: 'Челябинская область',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
+  },
+  {
+    name: 'Иваново',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
+  },
+  {
+    name: 'Камчатка',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
+  },
+  {
+    name: 'Холмогорский район',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
+  },
+  {
+    name: 'Байкал',
+    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
+  }
+];
+
+
+
 // popups
 const popupProfile = document.querySelector('.popup_profile');
 const popupImage = document.querySelector('.popup_image');
@@ -34,12 +65,10 @@ const linkInput = document.querySelector('.popup__text_type_place-link');
 //  other var
 const addElement = document.querySelector('.element');
 const templateElements = document.querySelector('.element__template');
-import {initialCards} from'./utils.js';
 
 // функция открытия попоапа
 const togglePopup = function(popup) {
   popup.classList.toggle('popup_opened');
-  // hideSubmitButton();
   document.addEventListener('keydown', closePopupEsc); // слушатель закрытия на Escape
 }
 
@@ -49,7 +78,6 @@ function disableSubmitButton() {
   const button = document.querySelector('.popup__save-button_place');
   const input = document.querySelector('.popup__text_type_place-name');
   if (input.value === "") {
-    // console.log(input.value)
     button.classList.add('popup__button_disabled');
     button.setAttribute('disabled', true);
   };
