@@ -24,4 +24,6 @@ const initialCards = [{
   }
 ];
 
-export {initialCards}
+export {
+  initialCards
+}
