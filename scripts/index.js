@@ -34,32 +34,7 @@ const linkInput = document.querySelector('.popup__text_type_place-link');
 //  other var
 const addElement = document.querySelector('.element');
 const templateElements = document.querySelector('.element__template');
-const initialCards = [{
-    name: 'Архыз',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/arkhyz.jpg'
-  },
-  {
-    name: 'Челябинская область',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/chelyabinsk-oblast.jpg'
-  },
-  {
-    name: 'Иваново',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/ivanovo.jpg'
-  },
-  {
-    name: 'Камчатка',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kamchatka.jpg'
-  },
-  {
-    name: 'Холмогорский район',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/kholmogorsky-rayon.jpg'
-  },
-  {
-    name: 'Байкал',
-    link: 'https://pictures.s3.yandex.net/frontend-developer/cards-compressed/baikal.jpg'
-  }
-];
-
+import {initialCards} from'./utils.js';
 
 // функция открытия попоапа
 const togglePopup = function(popup) {
@@ -70,7 +45,7 @@ const togglePopup = function(popup) {
 
 
 //функция для деактивации кнопки сабмита при первом открытии
-function hideSubmitButton() {
+function disableSubmitButton() {
   const button = document.querySelector('.popup__save-button_place');
   const input = document.querySelector('.popup__text_type_place-name');
   if (input.value === "") {
@@ -91,12 +66,12 @@ const closePopupEsc = function(evt) {
 
 
 //функция закрытия на overlay
-const closePopupOvrl = function(evt) {
+const closePopupOverlay  = function(evt) {
   if (evt.target !== evt.currentTarget) {
     evt.target.classList.remove('popup_opened');
   }
 };
-document.addEventListener('click', closePopupOvrl);
+document.addEventListener('click', closePopupOverlay);
 
 
 //попап для редактирования профиля
@@ -126,7 +101,7 @@ function handleOpenPopupPlace() { //функция для открытия мо�
   togglePopup(popupPlace);
   placeInput.value = '';
   linkInput.value = '';
-  hideSubmitButton();
+  disableSubmitButton();
 }
 
 closePopupImage.addEventListener('click', () => togglePopup(popupImage)); // слушатель для закрытия модального окна
@@ -149,7 +124,7 @@ function formSubmitPlaceHandler(evt) { // функция сохранения н
 }
 
 
-openPopupPlace.addEventListener('click', handleOpenPopupPlace, hideSubmitButton()); // слушатель для открытие модального окна
+openPopupPlace.addEventListener('click', handleOpenPopupPlace, disableSubmitButton()); // слушатель для открытие модального окна
 closePopupPlace.addEventListener('click', () => togglePopup(popupPlace)); // слушатель для закрытие модального окна
 formPlaceElement.addEventListener('submit', formSubmitPlaceHandler); // слушатель для записи формы
 
