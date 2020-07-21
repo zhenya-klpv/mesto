@@ -1,4 +1,4 @@
-const alidationConfig = {
+const validationConfig = {
   formSelector: '.popup__form',
   inputSelector: '.popup__input',
   submitButtonSelector: '.popup__button',
@@ -7,7 +7,7 @@ const alidationConfig = {
   errorClass: 'popup__error_visible'
 };
 
-enableValidation(alidationConfig);
+enableValidation(validationConfig);
 
 
 // запуск процесса валидации
