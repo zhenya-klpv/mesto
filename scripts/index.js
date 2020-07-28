@@ -9,17 +9,19 @@ import {
   closePopupProfile,
   closePopupImage,
   closePopupPlace,
-
+  // var for popup profile
   profile,
   formProfileElement,
   name,
   nameInput,
   job,
   jobInput,
+  //  var for popup place
   formPlaceElement,
   placeInput,
   linkInput,
   addElement,
+  //  other var
   templateElements,
   initialCards
 } from './constants.js';

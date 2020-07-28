@@ -30,10 +30,10 @@ class Card {
   }
 
   _handleImageClick() {
-    const zoomImage = document.querySelector('.popup__zoom-image').src = this._link;
-    const zoomImageAlt = document.querySelector('.popup__zoom-image').alt = ('Изображение: ' + this._title);
+    const zoomImage = document.querySelector('.popup__zoom-image');
     const zoomImageName = document.querySelector('.popup__image-name').textContent = this._title;
-
+    zoomImage.src = this._link;
+    zoomImage.alt = ('Изображение: ' + this._title);
 
     togglePopup(popupImage);
   }
