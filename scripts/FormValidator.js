@@ -16,6 +16,16 @@ class FormValidator {
     this._setEventListeners();
   }
 
+  // функция очистки форм от ошибок
+  resetForm() {
+    this._findAllInputs();
+    this._allInput.forEach((input) => {
+      this._input = input;
+      this._hideInputError();
+      this._toggleSubmitButton();
+    });
+  }
+
   // Функция поиска всех полей формы и кнопки сабмита
   _findAllInputs = () => {
     this._allInput = Array.from(this._form.querySelectorAll(this._inputSelector));
@@ -34,15 +44,6 @@ class FormValidator {
     });
   }
 
-  // функция очистки форм от ошибок
-  resetForm() {
-    this._findAllInputs();
-    this._allInput.forEach((input) => {
-      this._input = input;
-      this._hideInputError();
-      this._toggleSubmitButton();
-    });
-  }
 
   //проверка валидности введенных данных
   _isValid = () => {

@@ -63,24 +63,16 @@ function handleOpenPopupProfile() {
   nameInput.value = name.textContent;
   jobInput.value = job.textContent;
   togglePopup(popupProfile);
+  formEditProfileValidation.resetForm();
 }
 
-//функция для деактивации кнопки сабмита при первом открытии
-function disableSubmitButton() {
-  const button = document.querySelector('.popup__save-button_place');
-  const input = document.querySelector('.popup__text_type_place-name');
-  if (input.value === "") {
-    button.classList.add('popup__button_disabled');
-    button.setAttribute('disabled', true);
-  };
-}
 
 //функция для открытия попапа места
 function handleOpenPopupPlace() {
   togglePopup(popupPlace);
   placeInput.value = '';
   linkInput.value = '';
-  disableSubmitButton();
+  formPlaceValidation.resetForm();
 }
 
 // функция создание нового места
@@ -110,18 +102,17 @@ const renderCard = (item) => {
 
 const formEditProfileValidation = new FormValidator(validationConfig, formProfile);
 formEditProfileValidation.enableValidation();
-formEditProfileValidation.resetForm();
 
 const formPlaceValidation = new FormValidator(validationConfig, formPlace);
 formPlaceValidation.enableValidation();
-formPlaceValidation.resetForm();
+
 
 // Слушатели событий
 openPopupProfile.addEventListener('click', handleOpenPopupProfile, ); // слушатель для открытие модального окна
 closePopupProfile.addEventListener('click', () => togglePopup(popupProfile)); // слушатесль для закрытие модального окна
 formProfileElement.addEventListener('submit', formSubmitHandler); // слушатель для записи формы
 closePopupImage.addEventListener('click', () => togglePopup(popupImage)); // слушатель для закрытия модального окна
-openPopupPlace.addEventListener('click', handleOpenPopupPlace, disableSubmitButton()); // слушатель для открытие модального окна
+openPopupPlace.addEventListener('click', handleOpenPopupPlace); // слушатель для открытие модального окна
 closePopupPlace.addEventListener('click', () => togglePopup(popupPlace)); // слушатель для закрытие модального окна
 formPlaceElement.addEventListener('submit', formSubmitPlaceHandler); // слушатель для записи формы
 document.addEventListener('click', closePopupOverlay); // слушатель для закрытия на оверлей
