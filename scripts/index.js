@@ -23,18 +23,25 @@ import {
   addElement,
   //  other var
   templateElements,
-  initialCards
+  initialCards,
+  validationConfig,
+  formProfile,
+  formPlace,
 } from './constants.js';
+
+import {
+  togglePopup,
+  closePopupEsc
+} from './utils.js';
 
 import {
   Card
 } from './Card.js';
 
-// функция открытия попоапа
-const togglePopup = (popup) => {
-  popup.classList.toggle('popup_opened');
-  document.addEventListener('keydown', closePopupEsc); // слушатель закрытия на Escape
-}
+import {
+  FormValidator
+} from './FormValidator.js';
+
 
 //функция закрытия на overlay
 const closePopupOverlay = function(evt) {
@@ -43,23 +50,14 @@ const closePopupOverlay = function(evt) {
   }
 };
 
-// функция закрытия на Escape
-const closePopupEsc = function(evt) {
-  const activePopup = document.querySelector('.popup_opened')
-  if (evt.key === 'Escape') {
-    togglePopup(activePopup);
-  }
-  document.removeEventListener('keydown', closePopupEsc);
-}
-
 //попап для редактирования профиля
 const formSubmitHandler = function(evt) { // вводим данные и закрытие формы
   evt.preventDefault();
   name.textContent = nameInput.value;
   job.textContent = jobInput.value;
   togglePopup(popupProfile);
-
 }
+
 // функция открытия попапа профиля
 function handleOpenPopupProfile() {
   nameInput.value = name.textContent;
@@ -84,7 +82,6 @@ function handleOpenPopupPlace() {
   linkInput.value = '';
   disableSubmitButton();
 }
-
 
 // функция создание нового места
 function formSubmitPlaceHandler(evt) { // функция сохранения новой карточки
@@ -111,6 +108,14 @@ const renderCard = (item) => {
   addElement.prepend(cardElement);
 }
 
+const formEditProfileValidation = new FormValidator(validationConfig, formProfile);
+formEditProfileValidation.enableValidation();
+formEditProfileValidation.resetForm();
+
+const formPlaceValidation = new FormValidator(validationConfig, formPlace);
+formPlaceValidation.enableValidation();
+formPlaceValidation.resetForm();
+
 // Слушатели событий
 openPopupProfile.addEventListener('click', handleOpenPopupProfile, ); // слушатель для открытие модального окна
 closePopupProfile.addEventListener('click', () => togglePopup(popupProfile)); // слушатесль для закрытие модального окна
@@ -120,9 +125,3 @@ openPopupPlace.addEventListener('click', handleOpenPopupPlace, disableSubmitButt
 closePopupPlace.addEventListener('click', () => togglePopup(popupPlace)); // слушатель для закрытие модального окна
 formPlaceElement.addEventListener('submit', formSubmitPlaceHandler); // слушатель для записи формы
 document.addEventListener('click', closePopupOverlay); // слушатель для закрытия на оверлей
-
-
-export {
-  togglePopup,
-  popupImage
-}

@@ -1,7 +1,10 @@
 import {
   togglePopup,
-  popupImage
-} from './index.js';
+} from './utils.js';
+
+import {
+  popupImage,
+} from './constants.js';
 
 
 class Card {
@@ -23,6 +26,7 @@ class Card {
   _handleLikeClick() {
     this._element.querySelector('.element__like-button').classList.toggle('element__like-button_active');
   }
+
   _handleDeleteClick() {
     const itemCard = this._element.closest('.element__item');
     itemCard.remove();
@@ -51,9 +55,8 @@ class Card {
     this._element.querySelector('.element__delete-button').addEventListener('click', () => {
       this._handleDeleteClick();
     });
-
-
   }
+
   generateCard = () => {
     this._element = this._getTemplate();
     this._setEventListeners()
