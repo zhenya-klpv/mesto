@@ -9,8 +9,8 @@ const closePopupEsc = function(evt) {
   const activePopup = document.querySelector('.popup_opened')
   if (evt.key === 'Escape') {
     togglePopup(activePopup);
+    document.removeEventListener('keydown', closePopupEsc);
   }
-  document.removeEventListener('keydown', closePopupEsc);
 }
 
 //функция закрытия на overlay
