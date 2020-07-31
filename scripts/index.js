@@ -1,54 +1,56 @@
 import {
-  // popups
-  popupProfile,
-  popupImage,
-  popupPlace,
-  // buttons
-  openPopupProfile,
-  openPopupPlace,
-  closePopupProfile,
-  closePopupImage,
-  closePopupPlace,
-  // var for popup profile
-  profile,
-  formProfileElement,
-  name,
-  nameInput,
-  job,
-  jobInput,
-  //  var for popup place
-  formPlaceElement,
-  placeInput,
-  linkInput,
-  addElement,
-  //  other var
-  templateElements,
   initialCards,
   validationConfig,
-  formProfile,
-  formPlace,
 } from './constants.js';
 
 import {
   togglePopup,
-  closePopupEsc
+  closePopupEsc,
+  closePopupOverlay
 } from './utils.js';
 
 import {
-  Card
+  Card,
+  popupImage
 } from './Card.js';
 
 import {
   FormValidator
 } from './FormValidator.js';
 
+// popups
+const popupProfile = document.querySelector('.popup_profile');
 
-//функция закрытия на overlay
-const closePopupOverlay = function(evt) {
-  if (evt.target !== evt.currentTarget) {
-    evt.target.classList.remove('popup_opened');
-  }
-};
+const popupPlace = document.querySelector('.popup_place');
+
+// popups buttons
+const openPopupProfile = document.querySelector('.profile__edit-button');
+const openPopupPlace = document.querySelector('.profile__add-button');
+
+const closePopupProfile = document.querySelector('.popup__close-button_profile');
+const closePopupImage = document.querySelector('.popup__close-button_image');
+const closePopupPlace = document.querySelector('.popup__close-button_place');
+
+// var for popup profile
+const profile = document.querySelector('.profile');
+const formProfileElement = document.querySelector('.popup__container_profile');
+const name = profile.querySelector('.profile__name');
+const nameInput = document.querySelector('.popup__text_type_profile-name');
+const job = profile.querySelector('.profile__job');
+const jobInput = document.querySelector('.popup__text_type_profile-job');
+
+//  var for popup place
+const formPlaceElement = popupPlace.querySelector('.popup__container_place');
+const placeInput = document.querySelector('.popup__text_type_place-name');
+const linkInput = document.querySelector('.popup__text_type_place-link');
+
+//  other var
+const addElement = document.querySelector('.element');
+const templateElements = document.querySelector('.element__template');
+
+const formProfile = document.querySelector('.popup__container_profile');
+const formPlace = document.querySelector('.popup__container_place');
+
 
 //попап для редактирования профиля
 const formSubmitHandler = function(evt) { // вводим данные и закрытие формы
@@ -65,7 +67,6 @@ function handleOpenPopupProfile() {
   togglePopup(popupProfile);
   formEditProfileValidation.resetForm();
 }
-
 
 //функция для открытия попапа места
 function handleOpenPopupPlace() {
@@ -87,17 +88,13 @@ function formSubmitPlaceHandler(evt) { // функция сохранения н
 }
 
 // функция добавления в карточек разметку
-initialCards.reverse().forEach((item) => {
-  const card = new Card(item.name, item.link);
-  const cardElement = card.generateCard();
-  addElement.append(cardElement);
+initialCards.forEach((item) => {
+  addElement.prepend(new Card(item.name, item.link).generateCard())
 });
 
-// функция для отрисовки карточек новой карточки
+// функция для отрисовки новой карточки
 const renderCard = (item) => {
-  const card = new Card(item.name, item.link);
-  const cardElement = card.generateCard();
-  addElement.prepend(cardElement);
+  addElement.prepend(new Card(item.name, item.link).generateCard())
 }
 
 const formEditProfileValidation = new FormValidator(validationConfig, formProfile);
