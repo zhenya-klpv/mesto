@@ -1,11 +1,9 @@
 import {
-  togglePopup,
+  togglePopup
 } from './utils.js';
 
-import {
-  popupImage,
-} from './constants.js';
 
+const popupImage = document.querySelector('.popup_image');
 
 class Card {
   constructor(title, link, cardSelector) {
@@ -69,5 +67,6 @@ class Card {
 }
 
 export {
-  Card
+  Card,
+  popupImage
 }

@@ -13,7 +13,15 @@ const closePopupEsc = function(evt) {
   document.removeEventListener('keydown', closePopupEsc);
 }
 
+//функция закрытия на overlay
+const closePopupOverlay = function(evt) {
+  if (evt.target !== evt.currentTarget) {
+    evt.target.classList.remove('popup_opened');
+  }
+};
+
 export {
   togglePopup,
-  closePopupEsc
+  closePopupEsc,
+  closePopupOverlay
 }

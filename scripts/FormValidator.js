@@ -44,7 +44,6 @@ class FormValidator {
     });
   }
 
-
   //проверка валидности введенных данных
   _isValid = () => {
     if (!this._input.validity.valid) {
