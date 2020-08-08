@@ -1,7 +1,7 @@
 import {
   initialCards,
   validationConfig,
-} from '../components/constants.js';
+} from '../utils/constants.js';
 
 import {
   togglePopup,
