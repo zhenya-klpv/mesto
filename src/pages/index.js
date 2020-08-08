@@ -1,22 +1,22 @@
 import {
   initialCards,
   validationConfig,
-} from './constants.js';
+} from '../components/constants.js';
 
 import {
   togglePopup,
   closePopupEsc,
   closePopupOverlay
-} from './utils.js';
+} from '../components/utils.js';
 
 import {
   Card,
   popupImage
-} from './Card.js';
+} from '../components/Card.js';
 
 import {
   FormValidator
-} from './FormValidator.js';
+} from '../components/FormValidator.js';
 
 // popups
 const popupProfile = document.querySelector('.popup_profile');
