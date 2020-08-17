@@ -1,115 +1,80 @@
+// import '../pages/index.css';
 import {
-  initialCards,
-  validationConfig,
+  initialCards, validationConfig, profileConfig, containerSelector, containerProfile,
+  containerUserCards, containerViewImages, profileEditButton, formEditProfile, inputNameProfile,
+  inputJobProfile, cardsAddButton, formAddCards
 } from '../utils/constants.js';
 
-import {
-  togglePopup,
-  closePopupEsc,
-  closePopupOverlay
-} from '../components/utils.js';
+import UserInfo from '../components/UserInfo.js';
+import Card from '../components/Card.js';
+import Section from '../components/Section.js';
+import FormValidator from '../components/FormValidator.js';
+import PopupWithForm from '../components/PopupWithForm.js';
+import PopupWithImage from '../components/PopupWithImage.js';
 
-import {
-  Card,
-  popupImage
-} from '../components/Card.js';
+// Экземпляр класса с информацией о пользователе
+const userProfile = new UserInfo(profileConfig);
+// Экземпляр класса попапа с изображением
+const popupWithImage = new PopupWithImage(containerViewImages);
+popupWithImage.setEventListeners();
 
-import {
-  FormValidator
-} from '../components/FormValidator.js';
-
-// popups
-const popupProfile = document.querySelector('.popup_profile');
-
-const popupPlace = document.querySelector('.popup_place');
-
-// popups buttons
-const openPopupProfile = document.querySelector('.profile__edit-button');
-const openPopupPlace = document.querySelector('.profile__add-button');
-
-const closePopupProfile = document.querySelector('.popup__close-button_profile');
-const closePopupImage = document.querySelector('.popup__close-button_image');
-const closePopupPlace = document.querySelector('.popup__close-button_place');
-
-// var for popup profile
-const profile = document.querySelector('.profile');
-const formProfileElement = document.querySelector('.popup__container_profile');
-const name = profile.querySelector('.profile__name');
-const nameInput = document.querySelector('.popup__text_type_profile-name');
-const job = profile.querySelector('.profile__job');
-const jobInput = document.querySelector('.popup__text_type_profile-job');
-
-//  var for popup place
-const formPlaceElement = popupPlace.querySelector('.popup__container_place');
-const placeInput = document.querySelector('.popup__text_type_place-name');
-const linkInput = document.querySelector('.popup__text_type_place-link');
-
-//  other var
-const addElement = document.querySelector('.element');
-const templateElements = document.querySelector('.element__template');
-
-const formProfile = document.querySelector('.popup__container_profile');
-const formPlace = document.querySelector('.popup__container_place');
-
-
-//попап для редактирования профиля
-const formSubmitHandler = function(evt) { // вводим данные и закрытие формы
-  evt.preventDefault();
-  name.textContent = nameInput.value;
-  job.textContent = jobInput.value;
-  togglePopup(popupProfile);
+// Открытие попапа с изображением
+function handleImageClick(item) {
+  popupWithImage.open(item);
 }
 
-// функция открытия попапа профиля
-function handleOpenPopupProfile() {
-  nameInput.value = name.textContent;
-  jobInput.value = job.textContent;
-  togglePopup(popupProfile);
-  formEditProfileValidation.resetForm();
+// Создание и добавление карточек на страницу
+const addCards = (items) => {
+  const initialCardsList = new Section({
+    data: items, renderer: (item) => {
+      const card = new Card(item, '#photo-place__template', handleImageClick);
+      const cardElement = card.generateCard();
+      initialCardsList.addItem(cardElement);
+    }
+  }, containerSelector);
+  initialCardsList.renderItems();
 }
+addCards(initialCards);
 
-//функция для открытия попапа места
-function handleOpenPopupPlace() {
-  togglePopup(popupPlace);
-  placeInput.value = '';
-  linkInput.value = '';
-  formPlaceValidation.resetForm();
-}
-
-// функция создание нового места
-function formSubmitPlaceHandler(evt) { // функция сохранения новой карточки
-  evt.preventDefault();
-  const newPlace = {
-    name: placeInput.value,
-    link: linkInput.value,
-  };
-  togglePopup(popupPlace);
-  renderCard(newPlace, addElement)
-}
-
-// функция добавления в карточек разметку
-initialCards.forEach((item) => {
-  addElement.prepend(new Card(item.name, item.link).generateCard())
+// Экземпляр класса для попапа редактирования профиля
+const popupEditProfile = new PopupWithForm({
+  popupSelector: containerProfile, handleFormSubmit: (formData) => {
+    userProfile.setUserInfo(formData);
+    popupEditProfile.close();
+  }
 });
+popupEditProfile.setEventListeners();
 
-// функция для отрисовки новой карточки
-const renderCard = (item) => {
-  addElement.prepend(new Card(item.name, item.link).generateCard())
-}
+// Экземпляр класса для попапа добавления нового места
+const popupAddCards = new PopupWithForm({
+  popupSelector: containerUserCards, handleFormSubmit: (formData) => {
+    const newCard = [{ name: formData.card, link: formData.link }];
+    addCards(newCard);
+    popupAddCards.close();
+  }
+});
+popupAddCards.setEventListeners();
 
-const formEditProfileValidation = new FormValidator(validationConfig, formProfile);
+//Запуск процесса валидации формы редактирования профиля
+const formEditProfileValidation = new FormValidator(validationConfig, formEditProfile);
 formEditProfileValidation.enableValidation();
 
-const formPlaceValidation = new FormValidator(validationConfig, formPlace);
-formPlaceValidation.enableValidation();
+//Запуск валидации формы добавления нового места
+const formAddNewCardsValidation = new FormValidator(validationConfig, formAddCards);
+formAddNewCardsValidation.enableValidation();
 
 
-// Слушатели событий
-openPopupProfile.addEventListener('click', handleOpenPopupProfile, ); // слушатель для открытие модального окна
-closePopupProfile.addEventListener('click', () => togglePopup(popupProfile)); // слушатесль для закрытие модального окна
-formProfileElement.addEventListener('submit', formSubmitHandler); // слушатель для записи формы
-closePopupImage.addEventListener('click', () => togglePopup(popupImage)); // слушатель для закрытия модального окна
-openPopupPlace.addEventListener('click', handleOpenPopupPlace); // слушатель для открытие модального окна
-closePopupPlace.addEventListener('click', () => togglePopup(popupPlace)); // слушатель для закрытие модального окна
-formPlaceElement.addEventListener('submit', formSubmitPlaceHandler); // слушатель для записи формы
-document.addEventListener('click', closePopupOverlay); // слушатель для закрытия на оверлей
+profileEditButton.addEventListener('click', _ => {
+  popupEditProfile.open();
+  profileEditButton.blur();
+  const { name, job } = userProfile.getUserInfo();
+  inputNameProfile.value = name;
+  inputJobProfile.value = job;
+  formEditProfileValidation.resetForm();
+});
+
+cardsAddButton.addEventListener('click', _ => {
+  popupAddCards.open();
+  cardsAddButton.blur();
+  formAddNewCardsValidation.resetForm();
+});

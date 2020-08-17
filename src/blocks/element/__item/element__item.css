@@ -1,8 +1,0 @@
-.element__item {
-  background-color: white;
-  border-radius: 10px 10px;
-  position: relative;
-  height: 100%;
-  display: grid;
-  grid-row: auto;
-}
