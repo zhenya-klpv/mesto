@@ -1,4 +1,4 @@
-import '../pages/index.css';
+// import '../pages/index.css';
 import {
   initialCards, validationConfig, profileConfig, containerSelector, containerProfile,
   containerUserCards, containerViewImages, profileEditButton, formEditProfile, inputNameProfile,
