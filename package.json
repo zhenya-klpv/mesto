@@ -3,11 +3,10 @@
   "version": "1.0.0",
   "description": "https://k0lpak0v.github.io/mesto/",
   "main": "index.js",
-
   "scripts": {
-  "build": "rm -rf dist && webpack",
-  "dev": "webpack-dev-server --open --watch"
-},
+    "build": "rm -rf dist && webpack",
+    "dev": "webpack-dev-server --open --watch"
+  },
   "repository": {
     "type": "git",
     "url": "git+https://github.com/k0lpak0v/mesto.git"
@@ -19,6 +18,7 @@
   },
   "homepage": "https://github.com/k0lpak0v/mesto#readme",
   "devDependencies": {
+    "webpack": "^4.44.1",
     "webpack-cli": "^3.3.12",
     "webpack-dev-server": "^3.11.0"
   }
