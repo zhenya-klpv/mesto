@@ -1,8 +1,18 @@
 import '../pages/index.css';
 import {
-  initialCards, validationConfig, profileConfig, containerSelector, containerProfile,
-  containerUserCards, containerViewImages, profileEditButton, formEditProfile, inputNameProfile,
-  inputJobProfile, cardsAddButton, formAddCards
+  initialCards,
+  validationConfig,
+  profileConfig,
+  containerSelector,
+  containerProfile,
+  containerUserCards,
+  containerViewImages,
+  profileEditButton,
+  formEditProfile,
+  inputNameProfile,
+  inputJobProfile,
+  cardsAddButton,
+  formAddCards
 } from '../utils/constants.js';
 
 import UserInfo from '../components/UserInfo.js';
@@ -26,7 +36,8 @@ function handleImageClick(item) {
 // Создание и добавление карточек на страницу
 const addCards = (items) => {
   const initialCardsList = new Section({
-    data: items, renderer: (item) => {
+    data: items,
+    renderer: (item) => {
       const card = new Card(item, '#photo-place__template', handleImageClick);
       const cardElement = card.generateCard();
       initialCardsList.addItem(cardElement);
@@ -38,7 +49,8 @@ addCards(initialCards);
 
 // Экземпляр класса для попапа редактирования профиля
 const popupEditProfile = new PopupWithForm({
-  popupSelector: containerProfile, handleFormSubmit: (formData) => {
+  popupSelector: containerProfile,
+  handleFormSubmit: (formData) => {
     userProfile.setUserInfo(formData);
     popupEditProfile.close();
   }
@@ -47,8 +59,12 @@ popupEditProfile.setEventListeners();
 
 // Экземпляр класса для попапа добавления нового места
 const popupAddCards = new PopupWithForm({
-  popupSelector: containerUserCards, handleFormSubmit: (formData) => {
-    const newCard = [{ name: formData.card, link: formData.link }];
+  popupSelector: containerUserCards,
+  handleFormSubmit: (formData) => {
+    const newCard = [{
+      name: formData.card,
+      link: formData.link
+    }];
     addCards(newCard);
     popupAddCards.close();
   }
@@ -67,7 +83,10 @@ formAddNewCardsValidation.enableValidation();
 profileEditButton.addEventListener('click', _ => {
   popupEditProfile.open();
   profileEditButton.blur();
-  const { name, job } = userProfile.getUserInfo();
+  const {
+    name,
+    job
+  } = userProfile.getUserInfo();
   inputNameProfile.value = name;
   inputJobProfile.value = job;
   formEditProfileValidation.resetForm();

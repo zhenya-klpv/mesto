@@ -2,10 +2,10 @@ export default class Card {
   constructor(item, cardSelector, handleImageClick) {
     this._item = item;
     this._name = item.name;
-		this._link = item.link;
+    this._link = item.link;
     this._cardSelector = cardSelector;
     this._handleImageClick = handleImageClick;
-	}
+  }
 
   // Шаблон разметки карточки
   _getTemplate() {
@@ -37,7 +37,7 @@ export default class Card {
       this._handleDeleteCard();
     });
     this._cardImage.addEventListener('click', _ => {
-    this._handleImageClick(this._item);
+      this._handleImageClick(this._item);
     });
   }
 

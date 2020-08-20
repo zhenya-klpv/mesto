@@ -87,16 +87,3 @@ export default class FormValidator {
     });
   }
 }
-
-
-
-
-
-
-
-
-
-
-
-
-
