@@ -3,20 +3,19 @@ const HtmlWebpackPlugin = require('html-webpack-plugin');
 const MiniCssExtractPlugin = require('mini-css-extract-plugin');
 
 module.exports = {
-    entry: {
-      main: './src/pages/index.js'
-    },
-    mode: 'production',
-    output: {
-      path: path.resolve(__dirname, 'dist'),
-      filename: 'main.js'
-    },
-    devServer: {
-      port: 3000
-    },
-    module: {
-    rules: [
-      {
+  entry: {
+    main: './src/pages/index.js'
+  },
+  mode: 'production',
+  output: {
+    path: path.resolve(__dirname, 'dist'),
+    filename: 'main.js'
+  },
+  devServer: {
+    port: 3000
+  },
+  module: {
+    rules: [{
         test: /\.js$/,
         loader: 'babel-loader',
         options: {
@@ -32,9 +31,10 @@ module.exports = {
           {
             loader: 'css-loader',
             options: {
-              importLoaders: 1}
-             },
-            'postcss-loader'
+              importLoaders: 1
+            }
+          },
+          'postcss-loader'
         ],
       },
 
@@ -53,10 +53,10 @@ module.exports = {
       },
     ]
   },
-      plugins: [
-        new HtmlWebpackPlugin({
-          template: 'src/index.html'
-        }),
-        new MiniCssExtractPlugin(),
-      ]
-    }
+  plugins: [
+    new HtmlWebpackPlugin({
+      template: 'src/index.html'
+    }),
+    new MiniCssExtractPlugin(),
+  ]
+}
