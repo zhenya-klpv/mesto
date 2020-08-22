@@ -12,7 +12,8 @@ import {
   inputNameProfile,
   inputJobProfile,
   cardsAddButton,
-  formAddCards
+  formAddCards,
+  inputs
 } from '../utils/constants.js';
 
 import UserInfo from '../components/UserInfo.js';
@@ -80,7 +81,7 @@ const formAddNewCardsValidation = new FormValidator(validationConfig, formAddCar
 formAddNewCardsValidation.enableValidation();
 
 
-profileEditButton.addEventListener('click', _ => {
+profileEditButton.addEventListener('click', () => {
   popupEditProfile.open();
   profileEditButton.blur();
   const {
@@ -92,8 +93,8 @@ profileEditButton.addEventListener('click', _ => {
   formEditProfileValidation.resetForm();
 });
 
-cardsAddButton.addEventListener('click', _ => {
+cardsAddButton.addEventListener('click', () => {
+formAddNewCardsValidation.resetForm();
   popupAddCards.open();
   cardsAddButton.blur();
-  formAddNewCardsValidation.resetForm();
 });
