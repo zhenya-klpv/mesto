@@ -43,9 +43,6 @@ export const containerUserCards = '.popup__container_cards';
 export const containerViewImages = '.popup__container-view';
 
 
-export const popup = document.querySelector('.popup');
-export const popupImage = popup.querySelector('.popup__image');
-export const popupCaption = popup.querySelector('.popup__caption');
 export const profileEditButton = document.querySelector('.profile__edit-button');
 export const formEditProfile = document.querySelector('.popup__form_profile');
 export const inputNameProfile = formEditProfile.querySelector('.popup__input_name');
