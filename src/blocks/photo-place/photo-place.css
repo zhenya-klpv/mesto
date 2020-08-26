@@ -10,8 +10,6 @@
 @import url(./__group-like/photo-place__group-like.css);
 @import url(./__number-likes/photo-place__number-likes.css);
 
-
-
 @media screen and (max-width: 617px) {
   .photo-place {
     padding: 0 calc((100% - 282px)/2);

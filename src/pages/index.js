@@ -20,6 +20,7 @@ import {
   userJob,
   textDisabledClass,
 } from "../utils/constants.js";
+
 import UserInfo from "../components/UserInfo.js";
 import Card from "../components/Card.js";
 import Section from "../components/Section.js";
@@ -139,96 +140,102 @@ function savingData(form, load) {
 }
 
 const popupEditProfile = new PopupWithForm({
-      popupSelector: containerProfile,
-      handleFormSubmit: (formData) => {
-        savingData(formEditProfile, true);
-        api
-          .setUserInfo(formData)
-          .then((result) => {
-            userProfile.setUserInfo(result);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-           popupEditProfile.close();
-          },
-      }); popupEditProfile.setEventListeners();
+  popupSelector: containerProfile,
+  handleFormSubmit: (formData) => {
+    savingData(formEditProfile, true);
+    api
+      .setUserInfo(formData)
+      .then((result) => {
+        userProfile.setUserInfo(result);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    popupEditProfile.close();
+  },
+});
+popupEditProfile.setEventListeners();
 
-    const popupAddCards = new PopupWithForm({
+const popupAddCards = new PopupWithForm({
 
-      popupSelector: containerUserCards,
-      handleFormSubmit: (formData) => {
-        const newCard = [{
-          name: formData.card,
-          link: formData.link
-        }];
-        savingData(formAddCards, true);
-        api
-          .addNewCard(newCard)
-          .then((result) => {
-            addCards([result], result.owner);
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-        popupAddCards.close();
-      },
-    }); popupAddCards.setEventListeners();
+  popupSelector: containerUserCards,
+  handleFormSubmit: (formData) => {
+    const newCard = [{
+      name: formData.card,
+      link: formData.link
+    }];
+    savingData(formAddCards, true);
+    api
+      .addNewCard(newCard)
+      .then((result) => {
+        addCards([result], result.owner);
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    popupAddCards.close();
+  },
+});
+popupAddCards.setEventListeners();
 
-    const popupNewAvatar = new PopupWithForm({
-      popupSelector: containerAvatar,
-      handleFormSubmit: (formData) => {
-        savingData(formNewAvatar, true);
-        api
-          .setUserAvatar(formData)
-          .then((result) => {
-            avatar.style.backgroundImage = `url(${result.avatar})`;
-          })
-          .catch((err) => {
-            console.log(err);
-          });
-        popupNewAvatar.close();
-      },
-    }); popupNewAvatar.setEventListeners();
+const popupNewAvatar = new PopupWithForm({
+  popupSelector: containerAvatar,
+  handleFormSubmit: (formData) => {
+    savingData(formNewAvatar, true);
+    api
+      .setUserAvatar(formData)
+      .then((result) => {
+        avatar.style.backgroundImage = `url(${result.avatar})`;
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+    popupNewAvatar.close();
+  },
+});
+popupNewAvatar.setEventListeners();
 
-    const formEditProfileValidation = new FormValidator(
-      validationConfig,
-      formEditProfile
-    ); formEditProfileValidation.enableValidation();
+const formEditProfileValidation = new FormValidator(
+  validationConfig,
+  formEditProfile
+);
+formEditProfileValidation.enableValidation();
 
-    const formAddNewCardsValidation = new FormValidator(
-      validationConfig,
-      formAddCards
-    ); formAddNewCardsValidation.enableValidation();
+const formAddNewCardsValidation = new FormValidator(
+  validationConfig,
+  formAddCards
+);
+formAddNewCardsValidation.enableValidation();
 
-    const formNewAvatarValidation = new FormValidator(
-      validationConfig,
-      formNewAvatar
-    ); formNewAvatarValidation.enableValidation();
+const formNewAvatarValidation = new FormValidator(
+  validationConfig,
+  formNewAvatar
+);
+formNewAvatarValidation.enableValidation();
 
-    profileEditButton.addEventListener("click", (_) => {
-      popupEditProfile.open();
-      savingData(formEditProfile, false);
-      profileEditButton.blur();
-      const {
-        name,
-        job
-      } = userProfile.getUserInfo();
-      inputNameProfile.value = name;
-      inputJobProfile.value = job;
-      formEditProfileValidation.resetForm();
-    });
+profileEditButton.addEventListener("click", (_) => {
+  popupEditProfile.open();
+  savingData(formEditProfile, false);
+  profileEditButton.blur();
+  const {
+    name,
+    job
+  } = userProfile.getUserInfo();
+  inputNameProfile.value = name;
+  inputJobProfile.value = job;
+  formEditProfileValidation.resetForm();
+});
 
-    cardsAddButton.addEventListener("click", (_) => {
-      popupAddCards.open();
-      savingData(formAddCards, false);
-      cardsAddButton.blur();
-      formAddNewCardsValidation.resetForm();
-    });
+cardsAddButton.addEventListener("click", (_) => {
+  popupAddCards.open();
+  savingData(formAddCards, false);
+  cardsAddButton.blur();
+  formAddNewCardsValidation.resetForm();
+});
 
-    avatar.addEventListener("click", (_) => {
-      popupNewAvatar.open();
-      savingData(formNewAvatar, false);
-      avatar.blur();
-      formNewAvatarValidation.resetForm();
-    });
+avatar.addEventListener("click", (_) => {
+  popupNewAvatar.open();
+  savingData(formNewAvatar, false);
+  avatar.blur();
+  formNewAvatarValidation.resetForm();
+});

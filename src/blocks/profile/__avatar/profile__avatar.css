@@ -27,14 +27,14 @@
 }
 
 .profile__avatar:hover::before {
-  opacity:  1;
+  opacity: 1;
 }
 
 .profile__avatar:hover .profile__pencil {
-  opacity:  1;
+  opacity: 1;
 }
 
-@media screen and  (max-width: 617px) {
+@media screen and (max-width: 617px) {
   .profile__avatar {
     margin-right: 0;
     margin-bottom: 14px;
