@@ -4,12 +4,8 @@
   box-sizing: border-box;
 }
 
-@media screen and (min-width: 618px) and  (max-width: 929px) {
+@media screen and (min-width: 618px) and (max-width: 929px) {
   .page__container {
     width: 582px;
   }
 }
-
-
-
-

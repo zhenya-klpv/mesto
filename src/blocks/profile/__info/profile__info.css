@@ -3,13 +3,13 @@
   margin-top: 18px;
 }
 
-@media screen and (min-width: 618px) and  (max-width: 929px) {
-  .profile__info  {
+@media screen and (min-width: 618px) and (max-width: 929px) {
+  .profile__info {
     max-width: 430px;
   }
 }
 
-@media screen and  (max-width: 617px) {
+@media screen and (max-width: 617px) {
   .profile__info {
     margin: 0 auto 33px;
     width: 100%;

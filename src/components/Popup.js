@@ -6,14 +6,12 @@ export default class Popup {
     this._handleEscClose = this._handleEscClose.bind(this);
   }
 
-  // Открытие попапа
   open() {
     this._popup.classList.add('popup_opened');
     this._container.classList.add('popup__container_opened');
-    document.addEventListener('keydown', this._handleEscClose); // Устанавливаем слушатель на кнопку "Esc".
+    document.addEventListener('keydown', this._handleEscClose);
   }
 
-  // Закрытие попапа
   close() {
     this._popup.classList.remove('popup_opened');
     this._container.classList.remove('popup__container_opened');
@@ -29,14 +27,12 @@ export default class Popup {
     });
   }
 
-  // Закрытие на Esc
   _handleEscClose(evt) {
     if (evt.key === 'Escape') {
       this.close();
     }
   }
 
-  // Закрытие на Оверлей
   _closePopapOverlay(evt) {
     if (evt.target === evt.currentTarget) {
       this.close();
