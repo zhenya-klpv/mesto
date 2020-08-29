@@ -8,7 +8,6 @@ export default class FormValidator {
     this._errorClass = data.errorClass;
   }
 
-  // Функция валидации формы
   enableValidation() {
     this._form.addEventListener('submit', (evt) => {
       evt.preventDefault();
@@ -16,12 +15,11 @@ export default class FormValidator {
     this._setEventListeners();
   }
 
-  // Функция поиска всех полей формы и кнопки сабмита
   _findAllInputs() {
     this._allInput = Array.from(this._form.querySelectorAll(this._inputSelector));
     this._button = this._form.querySelector(this._submitButtonSelector);
   }
-  // Функция установки слушателей на все поля в форме
+
   _setEventListeners() {
     this._findAllInputs();
     this._allInput.forEach((input) => {
@@ -33,7 +31,6 @@ export default class FormValidator {
     });
   }
 
-  // функция очистки форм
   resetForm() {
     this._findAllInputs();
     this._allInput.forEach((input) => {
@@ -44,7 +41,6 @@ export default class FormValidator {
   }
 
 
-  // Функция валидации полей формы
   _checkInputValidity() {
     if (!this._input.validity.valid) {
       this._showInputError();
@@ -53,7 +49,6 @@ export default class FormValidator {
     }
   };
 
-  // Функция добавления и стилизации ошибки, при невалидности поля формы
   _showInputError() {
     const inputError = this._form.querySelector(`#${this._input.id}-error`);
     this._input.classList.add(this._inputErrorClass);
@@ -61,7 +56,6 @@ export default class FormValidator {
     inputError.classList.add(this._errorClass);
   };
 
-  // Функция удаления стилизации и ошибки, при валидности поля формы
   _hideInputError() {
     const inputError = this._form.querySelector(`#${this._input.id}-error`);
     this._input.classList.remove(this._inputErrorClass);
@@ -69,7 +63,6 @@ export default class FormValidator {
     inputError.textContent = '';
   };
 
-  // Функция переключения кнопки
   _toggleSubmitButton() {
     if (this._containsInvalidInput(this._allInput)) {
       this._button.classList.add(this._inactiveButtonClass);
@@ -80,7 +73,6 @@ export default class FormValidator {
     }
   };
 
-  // Функция проверки наличия невалидных полей в форме
   _containsInvalidInput() {
     return this._allInput.some((input) => {
       return !input.validity.valid;

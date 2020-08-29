@@ -1,15 +1,16 @@
-.footer__text {
+.popup__button-text {
+  margin: 0;
   font-family: 'Inter', ‘Arial’, sans-serif;
   font-style: normal;
   font-weight: normal;
   font-size: 18px;
   line-height: 22px;
-  margin: 0;
-  color: #545454;
+  color: #ffffff;
+  text-align: center;
 }
 
-@media screen and (max-width: 617px) {
-  .footer__text {
+@media screen and (max-width: 510px) {
+  .popup__button-text {
     font-size: 14px;
     line-height: 17px;
   }
