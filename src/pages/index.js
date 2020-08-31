@@ -41,30 +41,30 @@ const api = new Api({
 
 const userProfile = new UserInfo(profileConfig);
 const popupWithImage = new PopupWithImage(containerViewImages);
+const popupWithSubmit = new PopupWithSubmit({
+  popupSelector: containerTrash,
+  handleFormSubmit: (_) => {
+    api
+      .deleteCard(itemId)
+      .then((result) => {
+        console.log(result);
+        handleDeleteCard(element);
+        popupWithSubmit.close();
+      })
+      .catch((err) => {
+        console.log(err);
+      });
+  },
+});
 popupWithImage.setEventListeners();
+popupWithSubmit.setEventListeners();
 
 function handleCardClick(item) {
   popupWithImage.open(item);
 }
 
 function handleTrashClick(itemId, handleDeleteCard, element) {
-  const popupWithSubmit = new PopupWithSubmit({
-    popupSelector: containerTrash,
-    handleFormSubmit: (_) => {
-      api
-        .deleteCard(itemId)
-        .then((result) => {
-          console.log(result);
-          handleDeleteCard(element);
-        })
-        .catch((err) => {
-          console.log(err);
-        });
-      popupWithSubmit.close();
-    },
-  });
   popupWithSubmit.open();
-  popupWithSubmit.setEventListeners();
 }
 
 function handleAddLike(itemId, numberLikes) {
@@ -147,11 +147,11 @@ const popupEditProfile = new PopupWithForm({
       .setUserInfo(formData)
       .then((result) => {
         userProfile.setUserInfo(result);
+        popupEditProfile.close();
       })
       .catch((err) => {
         console.log(err);
       });
-    popupEditProfile.close();
   },
 });
 popupEditProfile.setEventListeners();
@@ -169,11 +169,11 @@ const popupAddCards = new PopupWithForm({
       .addNewCard(newCard)
       .then((result) => {
         addCards([result], result.owner);
+        popupAddCards.close();
       })
       .catch((err) => {
         console.log(err);
       });
-    popupAddCards.close();
   },
 });
 popupAddCards.setEventListeners();
@@ -186,11 +186,11 @@ const popupNewAvatar = new PopupWithForm({
       .setUserAvatar(formData)
       .then((result) => {
         avatar.style.backgroundImage = `url(${result.avatar})`;
+        popupNewAvatar.close();
       })
       .catch((err) => {
         console.log(err);
       });
-    popupNewAvatar.close();
   },
 });
 popupNewAvatar.setEventListeners();
