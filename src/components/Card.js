@@ -35,10 +35,10 @@ export default class Card {
     this._numberLikes.textContent = this._likesLength;
     if (this._itemOwnerId === this._userId) {
       this._element.querySelector('.photo-place__trash').classList.add('photo-place__trash_visible');
-    };
+    }
     this._like = this._element.querySelector('.photo-place__like');
     if (this._likesId()) {
-      this._like.classList.add('photo-place__like_active');
+      this._like.classList.add('photo-place__like_active')
     }
     this._setEventListeners();
     return this._element;
@@ -63,7 +63,7 @@ export default class Card {
   }
 
   _handleLikeIcon() {
-    if (!this._like.classList.contains('photo-place__like_active')) {
+    if (!this._like.classList.contains('photo-place__like_active') && navigator.onLine) {
       this._handleAddLike(this._itemId, this._numberLikes);
       this._like.classList.add('photo-place__like_active');
     } else {
@@ -71,6 +71,7 @@ export default class Card {
       this._like.classList.remove('photo-place__like_active');
     }
   }
+
 
   _handleDeleteCard(element) {
     element.remove();
