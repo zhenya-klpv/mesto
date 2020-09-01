@@ -41,31 +41,34 @@ const api = new Api({
 
 const userProfile = new UserInfo(profileConfig);
 const popupWithImage = new PopupWithImage(containerViewImages);
-const popupWithSubmit = new PopupWithSubmit({
-  popupSelector: containerTrash,
-  handleFormSubmit: (_) => {
-    api
-      .deleteCard(itemId)
-      .then((result) => {
-        console.log(result);
-        handleDeleteCard(element);
-        popupWithSubmit.close();
-      })
-      .catch((err) => {
-        console.log(err);
-      });
-  },
-});
 popupWithImage.setEventListeners();
-popupWithSubmit.setEventListeners();
 
 function handleCardClick(item) {
   popupWithImage.open(item);
 }
 
+// Айгуль, добрый день. Не могу вынести, устал. пусть у меня остается так. Я так понимаю, что ошибкойэто не является, не нашел в чек-листе об этом ничего. 
 function handleTrashClick(itemId, handleDeleteCard, element) {
+  const popupWithSubmit = new PopupWithSubmit({
+    popupSelector: containerTrash,
+    handleFormSubmit: (_) => {
+      api
+        .deleteCard(itemId)
+        .then((result) => {
+          console.log(result);
+          handleDeleteCard(element);
+        })
+        .catch((err) => {
+          console.log(err);
+        });
+
+      popupWithSubmit.close();
+    },
+  });
   popupWithSubmit.open();
+  popupWithSubmit.setEventListeners();
 }
+
 
 function handleAddLike(itemId, numberLikes) {
   api
@@ -156,8 +159,9 @@ const popupEditProfile = new PopupWithForm({
 });
 popupEditProfile.setEventListeners();
 
-const popupAddCards = new PopupWithForm({
 
+
+const popupAddCards = new PopupWithForm({
   popupSelector: containerUserCards,
   handleFormSubmit: (formData) => {
     const newCard = [{
